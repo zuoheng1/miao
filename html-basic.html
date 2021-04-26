@@ -10,30 +10,30 @@
 
 <body>
   <h1>lorem</h1>
-  <h2>lorem, ipsum.</h2>
-  <h3>lorem, ipsum dolor.</h3>
+  <h2>Lorem, ipsum.</h2>
+  <h3>Lorem, ipsum dolor.</h3>
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, sint aut. Blanditiis eveniet labore quis tempore rem
-    facilis, veritatis laboriosam aliquid quasi corporis quam nobis pariatur ab fugiat. Harum, architecto</p>
-  <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt fuga maxime vel quam itaque facilis dolor
-    molestiae tempora culpa, omnis reiciendis ut aliquid eius sunt excepturi quod delectus laudantium. Voluptates.</P>
-  <a target=blank href="https://www.jd.com">在新窗口打开京东</a>
-  <a target=blank href="mailto:894048856@qq.com">点我发邮件</a>
-  <a target=blank href="#page b0ttom">跳到页面底部</a>
-  <a target=blank href="#">点我下载文件</a><br>
+    facilis, veritatis laboriosam aliquid quasi corporis quam nobis pariatur ab fugiat. Harum, architecto<br>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt fuga maxime vel quam itaque facilis dolor
+    molestiae tempora culpa, omnis reiciendis ut aliquid eius sunt excepturi quod delectus laudantium. Voluptates.</p>
+  <a target="_blank" href="https://www.jd.com">在新窗口打开京东</a>
+  <a target="_blank" href="mailto:894048856@qq.com">给我发邮件</a>
+  <a href="#page bottom">跳转到页面底部</a>
+  <a href="#">点我下载文件</a>
+  <br>
   <img width="200" height="200"
-    src="https://drscdn.500px.org/photo/229389427/m%3D1170/v2?user_id=7012987&webp=true&sig=196fa0c161aa562478d08571764872f7d69a346c3c0b2e12aa00e2c6414eb28b"
-    alt="图片描述">
+    src="https://drscdn.500px.org/photo/229389427/m%3D1170/v2?user_id=7012987&webp=true&sig=196fa0c161aa562478d08571764872f7d69a346c3c0b2e12aa00e2c6414eb28b">
   <hr>
   <hr>
   <marquee>飘~~~</marquee>
   <em>这几种强调</em>
   <b>有什么</b>
   <strong>区别呢？</strong>
-  <u>这个呢？</u>
-  <i>这个呢？</i><br>
-  &lt;!-- 这段注释需要出现在页面里--&gt<br>
-  <p>html注释怎么写？</p><br>
-  <p>下面是一段javascript代码，最合适用何种标签表示呢？</p><br>
+  <u>这个呢</u>
+  <i>这个呢</i>
+  &lt;--这段注释需要出现在页面里-->
+  <p>html的注释应该怎么写</p>
+  <p>下面是一段javascript代码，最合适用何种标签表示呢？</p>
   <pre>
     <code>
       function a(){
@@ -46,15 +46,10 @@
     <li>
       小学
       <ol>
-        <li>
-          一年级
+        <li>一年级
           <ol>
-            <li>
-              上学期
-            </li>
-            <li>
-              下学期
-            </li>
+            <li>上学期</li>
+            <li>下学期</li>
           </ol>
         </li>
         <li>二年级</li>
@@ -64,26 +59,80 @@
     <li>中学</li>
     <li>大学</li>
   </ul>
-
   <hr>
   <dl>
     <dt>班级</dt>
-    <dd></dd>
+    <dd>三年二班</dd>
     <dt>老师</dt>
     <dd>张老师</dd>
     <dd>李老师</dd>
     <dd>王老师</dd>
     <dt>学生</dt>
-    <dd>小明</dd>
     <dd>豆豆</dd>
+    <dd>小明</dd>
   </dl>
   <hr>
-  <h3>Google搜索</h3>
-  <form target="_blank" action="https://www.google.com">
-    <input type="text" required name="q">
+  <h1>Google搜索</h1>
+  <form target="_blank" action="https://www.google.com.hk/search">
+    <input type="text" required name='q'>
     <button>在新窗口打开搜索结果</button>
   </form>
   <hr>
+  <form action="#">
+    <p>个人信息调查表</p>
+    <dl>
+      <dt>性别</dt>
+      <dd>
+        <input type="radio" name="gender" value="male">男性
+        <input type="radio" name="gender" value="female">女性
+      </dd>
+      <dt>年龄</dt>
+      <dd>
+        <select name="age">
+          <option hidden value="请选择">请选择</option>
+          <optgroup label="少年">
+            <option value="1-6">一岁到六岁</option>
+          </optgroup>
+          <optgroup label="青年">
+            <option value="7-12">七岁到十二岁</option>
+          </optgroup>
+          <optgroup label="壮年">
+            <option value="13-35">13岁到三十五岁</option>
+          </optgroup>
+        </select>
+      </dd>
+      <dt>生日</dt>
+      <dd>
+        <input type="date" name="birthday">
+      </dd>
+      <dt>生辰</dt>
+      <dd>
+        <input type="time" name="birthtime">
+      </dd>
+      <dt>照片</dt>
+      <dd>
+        <label><input hidden type="file" name="zjz"></label>
+      </dd>
+      <dt>肤色</dt>
+      <dd>
+        <input type="color" name="肤色">
+      </dd>
+      <dt>自我介绍</dt>
+      <dd>
+        <textarea cols="30" rows="30">&lt;/textarea></textarea>
+      </dd>
+    </dl>
+    <fieldset disabled>
+      <legend>这里全部禁用</legend>
+      <input type="text" name="#">
+      <input type="text" name="#">
+      <input type="text" name="#">
+    </fieldset>
+    <button>提交</button>
+    <button type="reset">重置</button>
+  </form>
+  <div id="page bottom"></div>
+
 </body>
 
 </html>
