@@ -51,7 +51,10 @@ div a:nth-child(11) {
   font-size: 30px;
 }
 
-.red {
+div.a ul li:nth-child(4),
+div.a ul li:nth-child(5),
+div.a ul li:nth-child(6),
+div.a ul li:nth-child(7) {
   color: red;
 }
 
