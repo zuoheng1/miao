@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    header {
+      height: 100px;
+      width: 100vw;
+      background-color: tomato;
+      xposition: relative;
+    }
+
+    header>p {
+      text-align: center;
+      margin: 0px;
+      position: relative;
+      top: 35%;
+
+    }
+
+    aside {
+      width: 300px;
+      height: calc(100vh - 100px);
+      background-color: yellowgreen;
+    }
+
+    main {
+      width: calc(100vw - 300px);
+      height: calc(100% - 100px);
+      background-color: blue;
+      position: absolute;
+      left: 300px;
+      top: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <header>
+      <p>我是导航栏</p>
+    </header>
+  </div>
+  <div>
+    <aside></aside>
+    <main></main>
+  </div>
+</body>
+
+</html>
