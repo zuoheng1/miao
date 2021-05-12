@@ -13,7 +13,7 @@
     }
 
     div {
-      height: 794.4px;
+      xheight: 794.4px;
     }
 
     div .one {
@@ -21,15 +21,16 @@
       height: 100vh;
       width: calc(100vw/4);
       background-color: blue;
+      position: absolute;
     }
 
     div .two {
       height: 100vh;
       width: calc(100vw/4);
       background-color: transparent;
-      position: relative;
-      left: calc(100vw/4);
-      top: calc(-100vh);
+      position: absolute;
+      left: 25vw;
+
     }
 
     div .two .top {
@@ -49,18 +50,17 @@
       height: 100vh;
       width: calc(100vw/4);
       background-color: red;
-      position: relative;
-      left: calc(100vw/2);
-      top: calc(-200vh);
+      position: absolute;
+      left: 50vw;
+
     }
 
     div .four {
       height: 100vh;
       width: calc(100vw/4);
       background-color: green;
-      position: relative;
-      left: calc(100vw/4*3);
-      top: calc(-300vh);
+      position: absolute;
+      left: 75vw;
 
     }
   </style>
