@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    div {
+      xheight: 794.4px;
+    }
+
+    div .one {
+
+      height: 100vh;
+      width: calc(100vw/4);
+      background-color: blue;
+    }
+
+    div .two {
+      xdisplay: inline-block;
+      height: 100vh;
+      width: calc(100vw/4);
+      background-color: transparent;
+      margin-left: calc(100%/4);
+      margin-top: calc(-100vh);
+
+    }
+
+    div .two .top {
+      width: calc(100vw/4);
+      height: calc(100%/3);
+      background-color: lawngreen;
+
+    }
+
+    div .two .down {
+
+      width: inherit;
+      height: calc(100%/3*2);
+      background-color: tomato;
+    }
+
+    div .three {
+
+      height: 100vh;
+      width: calc(100vw/4);
+      background-color: red;
+      margin-left: calc(100vw/2);
+      margin-top: calc(-100vh);
+    }
+
+    div .four {
+
+      height: 100vh;
+      width: calc(100vw/4);
+      background-color: green;
+      margin-left: calc(75vw);
+      margin-top: calc(-100vh);
+
+
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <main class="one"></main>
+    <main class="two">
+      <section class="top"></section>
+      <section class="down"></section>
+    </main>
+    <main class="three"></main>
+    <main class="four"></main>
+  </div>
+</body>
+
+</html>
