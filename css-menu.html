@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>CSS menu</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    div.menu-bar {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      height: 30px;
+      width: 100%;
+    }
+
+    div.menu-bar ul {
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      list-style-type: none;
+      background-color: #fffabf;
+    }
+
+    div.menu-bar ul li {
+      display: block;
+      position: absolute;
+      height: auto;
+      width: 120px;
+    }
+
+    .one {
+      position: absolute;
+      left: 0px;
+      text-align: center;
+    }
+
+    .two {
+      position: absolute;
+      left: 120px;
+    }
+
+    .three {
+      position: absolute;
+      left: 240px;
+    }
+
+    .four {
+      position: absolute;
+      left: 350px;
+    }
+
+    div.menu-bar li>span,
+    div.menu-bar li>a {
+      display: block;
+      padding: 0 0 0 10px;
+      height: 100%;
+      width: 120px;
+      line-height: 30px;
+      font-size: 17px;
+      font-style: normal;
+      text-decoration: none;
+      background-color: #fffabf;
+      color: #5d5636;
+      cursor: pointer;
+    }
+
+    div.menu-bar li:hover>span,
+    div.menu-bar li:hover>a {
+      color: #220000;
+      background-color: #eeeabe;
+    }
+
+    div.menu-bar ul ul {
+      margin-top: 2px;
+      display: none;
+      position: static;
+      height: auto;
+      width: 120px;
+
+      background-color: #dddddd;
+    }
+
+    div.menu-bar li:hover>ul {
+      display: block;
+    }
+
+    div.menu-bar ul ul li {
+      position: relative;
+      display: block;
+      height: 28px;
+      width: 120px;
+      border: none;
+    }
+
+    div.menu-bar ul ul li>span,
+    div.menu-bar ul ul li>a,
+    div.menu-bar ul ul li>a:link,
+    div.menu-bar ul ul li>a:visited,
+    div.menu-bar ul ul li>a:active {
+      height: 100%;
+      width: 114px;
+      padding: 0 0 0 4%;
+      line-height: 28px;
+      background-color: transparent;
+      border: none;
+      color: #000000;
+      font-family: georgia, serif;
+      font-size: 11px;
+      font-style: normal;
+    }
+
+    div.menu-bar ul ul li:hover>span,
+    div.menu-bar ul ul li:hover>a {
+      background-color: #cccccc;
+      color: #ff0000;
+    }
+
+    div.menu-bar ul ul ul {
+      position: absolute;
+      top: px;
+      left: 120px;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu-bar">
+    <ul>
+      <li class="one">
+        <a href="example.html">文件</a>
+        <ul>
+          <li>
+            <a href="example.html">打开</a>
+          </li>
+          <li>
+            <a class="menu-nav" href="example.html">首选项</a>
+            <ul>
+              <li>
+                <a class="menu-nav" href="example.html">另存为</a>
+              </li>
+              <li><a href="example.html">Link</a></li>
+              <li><span onclick="alert('!');">link</span></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="two">
+        <a href="example.html">编辑(E)</a>
+        <ul>
+          <li>
+            <a class="menu-nav" href="example.html">撤销</a>
+            <ul>
+              <li><a href="example.html">Link</a></li>
+              <li><a href="example.html">Link</a></li>
+              <li><a href="example.html">Link</a></li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="alert('!');">复制</span>
+          </li>
+          <li>
+            <a class="menu-nav" href="example.html">粘贴</a>
+          </li>
+          <li>
+            <a href="example.html">查找</a>
+          </li>
+          <li>
+            <a href="example.html">替换</a>
+          </li>
+        </ul>
+      </li>
+      <li class="three">
+        <span>选择(S)</span>
+        <ul>
+          <li>
+            <a class="menu-nav" href="example.html">全选</a>
+          </li>
+          <li>
+            <a class="menu-nav" href="example.html">选定范围</a>
+            <ul>
+              <li><a href="example.html">Link</a></li>
+              <li><a href="example.html">Link</a></li>
+              <li><span onclick="alert('!');">JavaScript function</span></li>
+            </ul>
+          </li>
+          <li>
+            <a href="example.html">选定内容</a>
+          </li>
+        </ul>
+      </li>
+      <li class="four">
+        <a href="example.html">提示</a>
+        <ul>
+          <li>
+            <span onclick="alert('!');">点一下</span>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</body>
+
+</html>
