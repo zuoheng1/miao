@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>css实现苹果手机开关按钮</title>
+</head>
+<style>
+  #toggle {
+    display: none;
+  }
+
+  #toggle-label {
+    width: 120px;
+    height: 60px;
+    border-radius: 30px;
+    background: lightblue;
+    position: relative;
+    display: block;
+  }
+
+  #toggle-label::before,
+  #toggle-label::after {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    display: block;
+    bottom: 1px;
+    content: '';
+  }
+
+  #toggle-label::after {
+    width: 58px;
+    background-color: #fff;
+    border-radius: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: margin 0.4s;
+  }
+
+  #toggle-label::before {
+    right: 1px;
+    background-color: #f1f1f1;
+    border-radius: 60px;
+    transition: background 0.4s;
+  }
+
+  #toggle:checked+#toggle-label::after {
+    margin-left: 60px;
+  }
+
+  #toggle:checked+#toggle-label::before {
+    background-color: #8ce196;
+  }
+</style>
+
+<body>
+  <div id="switch">
+    <input type="checkbox" id="toggle">
+    <label for="toggle" id="toggle-label"></label>
+  </div>
+</body>
+
+</html>
