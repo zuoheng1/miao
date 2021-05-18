@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    table {
+      width: 600px;
+      margin: auto;
+      margin-top: 50px;
+      border-collapse: collapse;
+    }
+
+    tr,
+    col {
+      height: 200px;
+      border: 5px blue solid;
+    }
+
+    td:hover {
+      border: red solid 5px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    section {
+      width: 600px;
+      height: 600px;
+      position: relative;
+      left: calc(50% - 300px);
+    }
+
+    section div {
+      width: 33.33%;
+      height: 33.33%;
+      position: absolute;
+      box-sizing: border-box;
+      border: 5px solid blue;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    section em {
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+      width: 0;
+    }
+
+    .a1 {
+      top: 0;
+      left: 0;
+    }
+
+    .a2 {
+      top: 0;
+      left: calc(33.33% - 5px);
+    }
+
+    .a3 {
+      top: 0;
+      left: calc(66.66% - 10px);
+    }
+
+    .a4 {
+      top: calc(33.33% - 5px);
+      left: 0;
+    }
+
+    .a5 {
+      top: calc(33.33% - 5px);
+      left: calc(33.33% - 5px);
+    }
+
+    .a6 {
+      top: calc(33.33% - 5px);
+      left: calc(66.66% - 10px);
+    }
+
+    .a7 {
+      bottom: 10px;
+      left: 0;
+    }
+
+    .a8 {
+      bottom: 10px;
+      left: calc(33.33% - 5px);
+    }
+
+    .a9 {
+      bottom: 10px;
+      left: calc(66.66% - 10px);
+    }
+
+    section div:hover {
+      border: 5px solid red;
+      z-index: 10;
+    }
+
+    form {
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    legend {
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+      position: static;
+      bottom: 0;
+      left: 0;
+      vertical-align: bottom;
+      color: hotpink;
+    }
+
+    form:hover legend {
+      font-size: 50px;
+      transition: 2s;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>表格</h2>
+  <table>
+    <col>
+    <col>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+  <h2>定位</h2>
+
+  <section>
+    <div class="a1"><em></em>1</div>
+    <div class="a2"><em></em>2</div>
+    <div class="a3"><em></em>3</div>
+    <div class="a4"><em></em>4</div>
+    <div class="a5"><em></em>5</div>
+    <div class="a6"><em></em>6</div>
+    <div class="a7"><em></em>7</div>
+    <div class="a8"><em></em>8</div>
+    <div class="a9"><em></em>9</div>
+  </section>
+  <form>
+    <fieldset>
+      <legend>订阅博客</legend>
+    </fieldset>
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .title {
+      background-color: blue;
+      border-bottom: 1px solid black;
+      height: 80px;
+    }
+
+    .aside {
+      background-color: red;
+      border-right: 1px solid black;
+      float: left;
+      width: 200px;
+      height: calc(100vh - 81px);
+    }
+
+    .body {
+      background-color: green;
+      float: right;
+      height: calc(100vh - 81px);
+      width: calc(100vw - 201px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="title">
+    <p>mail.qq.com</p>
+  </div>
+  <div class="aside">
+    <ul>
+      <li>写信</li>
+      <li>收信</li>
+      <li>通讯录</li>
+    </ul>
+  </div>
+  <div class="body">
+    <p>邮箱推荐<br>上午好，XXX。<br>邮件：X封未读邮件，X封未读邮件，X封未读邮件，X封未读邮件</p>
+  </div>
+</body>
+
+</html>
