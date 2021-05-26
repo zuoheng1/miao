@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="images/ico.bmp" type="image/x-icon">
+
+  <title>radio-slider</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+
+    .main {
+      position: relative;
+      width: 960px;
+      height: 540px;
+      overflow: hidden;
+    }
+
+    img {
+      width: 960px;
+      height: 540px;
+    }
+
+    input {
+      display: none;
+    }
+
+    label {
+      position: absolute;
+      border: 3px solid white;
+      background-color: #fff;
+      bottom: 30px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+    }
+
+    label[for="btn1"] {
+      left: 35%;
+    }
+
+    label[for="btn2"] {
+      left: 40%;
+    }
+
+    label[for="btn3"] {
+      left: 45%;
+    }
+
+    label[for="btn4"] {
+      left: 50%;
+    }
+
+    label[for="btn5"] {
+      left: 55%;
+    }
+
+    ul {
+      display: flex;
+      width: calc(960px * 5);
+      transition: all 1s;
+    }
+
+    li {
+      list-style-type: none;
+    }
+
+    #btn1:checked~ul {
+      margin-left: 0;
+    }
+
+    #btn2:checked~ul {
+      margin-left: -960px;
+    }
+
+    #btn3:checked~ul {
+      margin-left: -1920px;
+    }
+
+    #btn4:checked~ul {
+      margin-left: calc(-960px * 3);
+    }
+
+    #btn5:checked~ul {
+      margin-left: calc(-960px * 4);
+    }
+
+    #btn1:checked~label[for="btn1"] {
+      background-color: red;
+    }
+
+    #btn2:checked~label[for="btn2"] {
+      background-color: red;
+    }
+
+    #btn3:checked~label[for="btn3"] {
+      background-color: red;
+    }
+
+    #btn4:checked~label[for="btn4"] {
+      background-color: red;
+    }
+
+    #btn5:checked~label[for="btn5"] {
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <input type="radio" name="btn" id="btn1">
+    <input type="radio" name="btn" id="btn2">
+    <input type="radio" name="btn" id="btn3">
+    <input type="radio" name="btn" id="btn4">
+    <input type="radio" name="btn" id="btn5">
+    <label for="btn1"></label>
+    <label for="btn2"></label>
+    <label for="btn3"></label>
+    <label for="btn4"></label>
+    <label for="btn5"></label>
+    <ul>
+      <li><img src="images/1.jpg" alt=""></li>
+      <li><img src="images/2.jpg" alt=""></li>
+      <li><img src="images/3.jpg" alt=""></li>
+      <li><img src="images/4.jpg" alt=""></li>
+      <li><img src="images/5.jpg" alt=""></li>
+    </ul>
+  </div>
+</body>
+
+</html>
