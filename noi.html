@@ -21,7 +21,7 @@
         var a = +prompt('a=?'),
             b = +prompt('b=?'),
             c = +prompt('c=?');
-        console.log((a + b) % c);
+        console.log(parseInt((a + b) / c));
     </script>
     <script id="ch0103/04">
         var a = +prompt('a=?'),
@@ -38,7 +38,6 @@
             b = +prompt('b=?')
         console.log(((b / a).toFixed(5)) * 100 + '%');
     </script>
-
     <script id="ch0103/07">
         var x = +prompt('x=?'),
             a = +prompt('a=?'),
@@ -71,8 +70,8 @@
     </script>
     <script id="ch0103/12">
         var r = +prompt('r=?')
-        console.log((3 / 4 * 3.14 * r * r * r).toFixed(2));
-    </script> -->
+        console.log((4 / 3 * 3.14159 * r * r * r).toFixed(2));
+    </script>
     <script id="ch0103/13">
         var num = +prompt('输入三位数')
         a = Math.floor(num / 100)
@@ -83,8 +82,9 @@
     <script id="ch0103/14">
         var r = +prompt('输入半径：'),
             h = +prompt('输入高度：'),
-            π = 3.14159
-        console.log(Math.ceil(20000 / π * r * r * h));
+            π = 3.14159,
+            v = h * π * r * r / 1000
+        console.log(Math.ceil(20 / v));
     </script>
     <script id="ch0103/15">
         var n = +prompt('苹果个数'),
@@ -93,11 +93,11 @@
         console.log(n - Math.ceil(y / x));
     </script>
     <script id="ch0103/16">
-        var a = +prompt('输入点'),
-            b = +prompt('输入点'),
-            c = +prompt('输入点'),
-            d = +prompt('输入点')
-        console.log(Math.sqrt(c * c + d * d) - Math.sqrt(a * a + b * b));
+        var x1 = +prompt('输入点'),
+            y1 = +prompt('输入点'),
+            x2 = +prompt('输入点'),
+            y2 = +prompt('输入点')
+        console.log(Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)));
     </script>
     <script id="ch0103/17">
         var x1 = +prompt('输入点'),
@@ -110,7 +110,7 @@
             b = Math.sqrt((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3)),
             c = Math.sqrt((x3 - x2) * (x3 - x2) + (y3 - y2) * (y3 - y2)),
             p = (a + b + c) / 2
-        console.log(Math.sqrt(p * (p - a) * (p - b) * (p - c)));
+        console.log((Math.sqrt(p * (p - a) * (p - b) * (p - c))).toFixed(2));
     </script>
     <script id="ch0103/18">
         var a1 = +prompt('第一项'),
@@ -127,6 +127,219 @@
     <script id="ch0103/20">
         var n = +prompt('项数')
         console.log((Math.pow(2, n)));
+    </script>
+    <script id="ch0104/01">
+        var x = +prompt()
+        if (x > 0) {
+            console.log('positive');
+        } else if (x == 0) {
+            console.log('zero')
+        } else {
+            console.log('negative');
+        }
+    </script>
+    <script id="ch0104/02">
+        var a = +prompt()
+        if (a > 0) {
+            console.log(a.toFixed(2));
+        } else {
+            console.log((-a).toFixed(2));
+        }
+    </script>
+    <script id="ch0104/03">
+        var a = +prompt()
+        if (a % 2) {
+            console.log('odd');
+        } else {
+            console.log('even');
+        }
+    </script>
+    <script id="ch0104/04">
+        var a = prompt(),
+            b = a.charCodeAt()
+        if (b % 2) {
+            console.log('YES');
+        } else {
+            console.log('NO');
+        }
+    </script>
+    <script id="ch0104/05">
+        var x = +prompt(),
+            y = +prompt()
+        if (x > y) {
+            console.log('>');
+        } else if (x == y) {
+            console.log('=');
+        } else {
+            console.log('<');
+        }
+    </script>
+    <script id="ch0104/06">
+        var a = +prompt()
+        if (a < 100 && a > 10) {
+            console.log(1);
+        } else {
+            console.log(0);
+        }
+    </script>
+    <script id="ch0104/07">
+        var a = +prompt(),
+            b = +prompt()
+        if (a >= 10 || b >= 20) {
+            console.log(1);
+        } else {
+            console.log(0);
+        }
+    </script>
+    <script id="ch0104/08">
+        var a = +prompt()
+        if (a % 3 == 0 && a % 5 == 0) {
+            console.log('YES');
+        } else {
+            console.log('NO');
+        }
+    </script>
+    <script id="ch0104/09">
+        var a = +prompt()
+        if (a % 105 == 0) {
+            console.log('3' + '5' + '7');
+        } else if (a % 3 == 0 && a % 5 == 0) {
+            console.log('3' + '5');
+        } else if (a % 3 == 0 && a % 7 == 0) {
+            console.log('3' + '7');
+        } else if (a % 5 == 0 && a % 7 == 0) {
+            console.log('5' + '7');
+        } else if (a % 3) {
+            console.log(3);
+        } else if (a % 5) {
+            console.log(5);
+        } else if (a % 7) {
+            console.log(7);
+        } else {
+            console.log('n');
+        }
+    </script>
+    <script id="ch0104/10">
+        var a = +prompt(),
+            b = +prompt()
+        if (a >= 60 && b >= 60 || a <= 60 && b <= 60) {
+            console.log(0);
+        } else {
+            console.log(1);
+        }
+    </script>
+    <script id="ch0104/11">
+        var a = +prompt()
+        if (a % 2 == 0 || a >= 7) {
+            console.log('YES');
+        } else {
+            console.log('NO');
+        }
+    </script>
+    <script id="ch0104/12">
+        var a = +prompt()
+        if ((50 + a / 3) > (a / 1.2)) {
+            console.log('Walk');
+        } else if ((50 + a / 3) < (a / 1.2)) {
+            console.log('Bike');
+        } else {
+            console.log('All');
+        }
+    </script>
+    <script id="ch0104/13">
+        var a = +prompt()
+        if (0 <= a && a < 5) {
+            console.log(-a + 2.5);
+        } else if (5 <= a && a < 10) {
+            console.log(2 - 1.5 * (a - 3)(a - 3));
+        } else if (10 <= a && a < 20) {
+            console.log(a / 2 - 1.5);
+        }
+    </script>
+    <script id="ch0104/14">
+        var a = +prompt(),
+            b = prompt(),
+            n,
+            y
+        if (a < 1000 && b == 'n') {
+            console.log(8);
+        } else
+        if (a < 1000 && b == 'y') {
+            console.log(13);
+        } else
+        if (a > 1000 && b == 'n') {
+            console.log(Math.ceil((a - 1000) / 500) * 4 + 8);
+        } else
+        if (a > 1000 && b == 'y') {
+            console.log((Math.ceil((a - 1000) / 500) * 4) + 13);
+        }
+    </script>
+    <script id="ch0104/15">
+        var a = +prompt(),
+            b = +prompt(),
+            c = +prompt()
+        console.log(Math.max(a, b, c));
+    </script>
+    <script id="ch0104/16">
+        var a = +prompt(),
+            b = +prompt(),
+            c = +prompt()
+        if (a + b > c && a + c > b && b + c > a && a - b < c && a - c < b && b - c < a && b - a < c && c - a < b && c - b < a) {
+            console.log('yes');
+        } else {
+            console.log('no');
+        }
+    </script>
+    <script id="ch0104/17">
+        var a = +prompt()
+        if (a % 400 == 0 || (a % 4 == 0) && a % 100 != 0) {
+            console.log('Y');
+        } else {
+            console.log('N');
+        }
+    </script>
+    <script id="ch0104/18">
+        var x = +prompt(),
+            y = +prompt()
+        if (x >= -1 && x <= 1 && y >= -1 && y <= 1) {
+            console.log('yes');
+        } else {
+            console.log('no');
+        }
+    </script>
+    <script id="ch0104/19">
+        var a = +prompt(),
+            b = +prompt(),
+            c = String(prompt())
+        if (c == '/' && b == 0) {
+            console.log('Divided by zero');
+        } else if (c == '/') {
+            console.log(Math.floor(a / b));
+        } else if (c == '*') {
+            console.log(a * b);
+        } else if (c == '+') {
+            console.log(a + b);
+        } else if (c == '-') {
+            console.log(a - b);
+        } else {
+            console.log('Invalid operator!');
+        }
+    </script>
+    <script id="ch0104/20">
+        var a = +prompt(),
+            b = +prompt(),
+            c = +prompt(),
+            delta = b * b - 4 * a * c,
+            x1 =
+            if (delta > 0) {
+                console.log();
+            }
+    </script>
+    <script id="ch0104/21">
+        var n = +prompt('苹果个数'),
+            x = +prompt('速度'),
+            y = +prompt('时间')
+        console.log(n - Math.ceil(y / x));
     </script>
 </head>
 
