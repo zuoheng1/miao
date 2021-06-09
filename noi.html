@@ -55,7 +55,9 @@
     <script id="ch0103/09">
         var r = Number(prompt('请输入半径：'));
         var π = Math.PI;
-        console.log((2 * r).toFixed(4), +(2 * π).toFixed(4), +(π * r * r).toFixed(4));
+        console.log((2 * r).toFixed(4));
+        console.log((2 * π).toFixed(4));
+        console.log((π * r * r).toFixed(4));
     </script>
     <script id="ch0103/10">
         var r1 = +prompt('r1'),
@@ -64,9 +66,10 @@
         console.log(R.toFixed(2));
     </script>
     <script id="ch0103/11">
-        var a = +prompt('a=?'),
-            b = +prompt('b=?')
-        console.log((a * 10000000 % b * 10000000).toFixed(4));
+        var a = +prompt(),
+            b = +prompt(),
+            c = a % b
+        console.log(c.toFixed(4));
     </script>
     <script id="ch0103/12">
         var r = +prompt('r=?')
@@ -97,7 +100,7 @@
             y1 = +prompt('输入点'),
             x2 = +prompt('输入点'),
             y2 = +prompt('输入点')
-        console.log(Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)));
+        console.log((Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))).toFixed(3));
     </script>
     <script id="ch0103/17">
         var x1 = +prompt('输入点'),
@@ -209,11 +212,11 @@
             console.log('3' + '7');
         } else if (a % 5 == 0 && a % 7 == 0) {
             console.log('5' + '7');
-        } else if (a % 3) {
+        } else if (a % 3 == 0) {
             console.log(3);
-        } else if (a % 5) {
+        } else if (a % 5 == 0) {
             console.log(5);
-        } else if (a % 7) {
+        } else if (a % 7 == 0) {
             console.log(7);
         } else {
             console.log('n');
@@ -237,7 +240,8 @@
         }
     </script>
     <script id="ch0104/12">
-        var a = +prompt()
+        var a = +prompt(),
+            y
         if ((50 + a / 3) > (a / 1.2)) {
             console.log('Walk');
         } else if ((50 + a / 3) < (a / 1.2)) {
@@ -249,12 +253,13 @@
     <script id="ch0104/13">
         var a = +prompt()
         if (0 <= a && a < 5) {
-            console.log(-a + 2.5);
+            y = -a + 2.5;
         } else if (5 <= a && a < 10) {
-            console.log(2 - 1.5 * (a - 3)(a - 3));
+            y = 2 - 1.5 * (a - 3)(a - 3);
         } else if (10 <= a && a < 20) {
-            console.log(a / 2 - 1.5);
+            y = a / 2 - 1.5;
         }
+        console.log(y.toFixed(3));
     </script>
     <script id="ch0104/14">
         var a = +prompt(),
@@ -326,14 +331,21 @@
         }
     </script>
     <script id="ch0104/20">
-        var a = +prompt(),
-            b = +prompt(),
-            c = +prompt(),
-            delta = b * b - 4 * a * c,
-            x1 =
-            if (delta > 0) {
-                console.log();
-            }
+        var b = +prompt();
+        var c = +prompt();
+
+        var delta = b * b - 4 * a * c;
+        var x1, x2;
+        var sb = -b / (2 * a);
+        var xb;
+        if (delta >= 0) {
+            x1 = (-b + Math.sqrt(delta)) / (2 * a);
+            x2 = (-b - Math.sqrt(delta)) / (2 * a);
+            console.log("x1=" + x1.toFixed(5) + ";" + "x2=" + x2.toFixed(5));
+        } else {
+            xb = Math.sqrt(-delta) / (2 * a);
+            console.log("x1=" + sb.toFixed(5) + "+" + xb.toFixed(5) + "i" + ";" + "x2=" + sb.toFixed(5) + "-" + xb.toFixed(5) + "i");
+        }
     </script>
     <script id="ch0104/21">
         var n = +prompt('苹果个数'),
