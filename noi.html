@@ -53,11 +53,15 @@
         console.log(c.toFixed(5));
     </script>
     <script id="ch0103/09">
-        var r = Number(prompt('请输入半径：'));
-        var π = Math.PI;
-        console.log((2 * r).toFixed(4));
-        console.log((2 * π).toFixed(4));
-        console.log((π * r * r).toFixed(4));
+        var r = +prompt("请输入r");
+        var pi, d, c, s;
+        pi = 3.14159;
+        d = 2 * r;
+        c = 2 * pi * r;
+        s = pi * r * r;
+        console.log(d.toFixed(4));
+        console.log(c.toFixed(4));
+        console.log(s.toFixed(4));
     </script>
     <script id="ch0103/10">
         var r1 = +prompt('r1'),
@@ -72,8 +76,9 @@
         console.log(c.toFixed(4));
     </script>
     <script id="ch0103/12">
-        var r = +prompt('r=?')
-        console.log((4 / 3 * 3.14159 * r * r * r).toFixed(2));
+        var r = +prompt("请输入r");
+        var c = 4 / 3 * 3.14 * r * r * r;
+        console.log(c.toFixed(2));
     </script>
     <script id="ch0103/13">
         var num = +prompt('输入三位数')
@@ -83,11 +88,12 @@
         console.log(String(c) + String(b) + a);
     </script>
     <script id="ch0103/14">
-        var r = +prompt('输入半径：'),
-            h = +prompt('输入高度：'),
-            π = 3.14159,
-            v = h * π * r * r / 1000
-        console.log(Math.ceil(20 / v));
+        var h = +prompt("请输入h");
+        var r = +prompt("请输入r");
+        var pi = 3.14159;
+        var v = h * pi * r * r / 1000;
+        var c = 20 / v;
+        console.log(parseInt(c) + 1);
     </script>
     <script id="ch0103/15">
         var n = +prompt('苹果个数'),
@@ -203,23 +209,30 @@
         }
     </script>
     <script id="ch0104/09">
-        var a = +prompt()
-        if (a % 105 == 0) {
-            console.log('3' + '5' + '7');
-        } else if (a % 3 == 0 && a % 5 == 0) {
-            console.log('3' + '5');
-        } else if (a % 3 == 0 && a % 7 == 0) {
-            console.log('3' + '7');
-        } else if (a % 5 == 0 && a % 7 == 0) {
-            console.log('5' + '7');
-        } else if (a % 3 == 0) {
-            console.log(3);
-        } else if (a % 5 == 0) {
-            console.log(5);
-        } else if (a % 7 == 0) {
-            console.log(7);
-        } else {
-            console.log('n');
+        var a = +prompt();
+        if (a % 3 == 0 && a % 5 == 0 && a % 7 == 0) {
+            console.log("3 5 7");
+        }
+        else if (a % 3 == 0 && a % 5 == 0) {
+            console.log("3 5");
+        }
+        else if (a % 5 == 0 && a % 7 == 0) {
+            console.log("5 7");
+        }
+        else if (a % 3 == 0 && a % 7 == 0) {
+            console.log("3 7");
+        }
+        else if (a % 3 == 0) {
+            console.log("3");
+        }
+        else if (a % 5 == 0) {
+            console.log("5");
+        }
+        else if (a % 7 == 0) {
+            console.log("7");
+        }
+        else {
+            console.log("n");
         }
     </script>
     <script id="ch0104/10">
@@ -269,15 +282,15 @@
         if (a < 1000 && b == 'n') {
             console.log(8);
         } else
-        if (a < 1000 && b == 'y') {
-            console.log(13);
-        } else
-        if (a > 1000 && b == 'n') {
-            console.log(Math.ceil((a - 1000) / 500) * 4 + 8);
-        } else
-        if (a > 1000 && b == 'y') {
-            console.log((Math.ceil((a - 1000) / 500) * 4) + 13);
-        }
+            if (a < 1000 && b == 'y') {
+                console.log(13);
+            } else
+                if (a > 1000 && b == 'n') {
+                    console.log(Math.ceil((a - 1000) / 500) * 4 + 8);
+                } else
+                    if (a > 1000 && b == 'y') {
+                        console.log((Math.ceil((a - 1000) / 500) * 4) + 13);
+                    }
     </script>
     <script id="ch0104/15">
         var a = +prompt(),
@@ -331,20 +344,30 @@
         }
     </script>
     <script id="ch0104/20">
-        var b = +prompt();
-        var c = +prompt();
-
-        var delta = b * b - 4 * a * c;
-        var x1, x2;
-        var sb = -b / (2 * a);
-        var xb;
-        if (delta >= 0) {
-            x1 = (-b + Math.sqrt(delta)) / (2 * a);
-            x2 = (-b - Math.sqrt(delta)) / (2 * a);
-            console.log("x1=" + x1.toFixed(5) + ";" + "x2=" + x2.toFixed(5));
-        } else {
-            xb = Math.sqrt(-delta) / (2 * a);
-            console.log("x1=" + sb.toFixed(5) + "+" + xb.toFixed(5) + "i" + ";" + "x2=" + sb.toFixed(5) + "-" + xb.toFixed(5) + "i");
+        var a = +prompt();
+        if (a % 3 == 0 && a % 5 == 0 && a % 7 == 0) {
+            console.log("3 5 7");
+        }
+        else if (a % 3 == 0 && a % 5 == 0) {
+            console.log("3 5");
+        }
+        else if (a % 5 == 0 && a % 7 == 0) {
+            console.log("5 7");
+        }
+        else if (a % 3 == 0 && a % 7 == 0) {
+            console.log("3 7");
+        }
+        else if (a % 3 == 0) {
+            console.log("3");
+        }
+        else if (a % 5 == 0) {
+            console.log("5");
+        }
+        else if (a % 7 == 0) {
+            console.log("7");
+        }
+        else {
+            console.log("n");
         }
     </script>
     <script id="ch0104/21">
