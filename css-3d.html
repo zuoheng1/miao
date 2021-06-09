@@ -22,6 +22,8 @@
 			transform: rotate3d(1, 1, 0, -45deg);
 			transform-style: preserve-3d;
 			animation: rotate 5s linear infinite;
+
+			xopacity: 0.3;
 			/* perspective: 500;
 			-webkit-perspective: 500;
 			perspective-origin: 10% 10%; */
@@ -46,6 +48,11 @@
 			line-height: 300px;
 			text-align: center;
 			font-size: 40px;
+
+		}
+
+		li a {
+			opacity: initial;
 		}
 
 		ul>li:nth-of-type(1) {
@@ -77,17 +84,21 @@
 			background-color: saddlebrown;
 			transform: translateY(150px) rotateX(-90deg);
 		}
+
+		ul:hover {
+			animation-play-state: paused;
+		}
 	</style>
 </head>
 
 <body>
 	<ul>
-		<li>01-前面</li>
-		<li>02-后面</li>
-		<li>03-左面</li>
-		<li>04-右面</li>
-		<li>05-上面</li>
-		<li>06-下面</li>
+		<li><a>01-前面</a></li>
+		<li><a>02-后面</a></li>
+		<li><a>03-左面</a></li>
+		<li><a>04-右面</a></li>
+		<li><a>05-上面</a></li>
+		<li><a>06-下面</a></li>
 	</ul>
 </body>
 

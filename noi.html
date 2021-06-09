@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script id="ch0103/01">
+        var a = +(prompt('请输入a')),
+            b = +(prompt('请输入b'));
+        console.log(a + b);
+    </script>
+    <script id="ch0103/02">
+        var a = +prompt('a=?'),
+            b = +prompt('b=?'),
+            c = +prompt('c=?');
+        console.log((a + b) * c);
+    </script>
+    <script id="ch0103/03">
+        var a = +prompt('a=?'),
+            b = +prompt('b=?'),
+            c = +prompt('c=?');
+        console.log((a + b) % c);
+    </script>
+    <script id="ch0103/04">
+        var a = +prompt('a=?'),
+            b = +prompt('b=?')
+        console.log((a - a % b) / b, a % b);
+    </script>
+    <script id="ch0103/05">
+        var a = +prompt('a=?'),
+            b = +prompt('b=?')
+        console.log((a / b).toFixed(9));
+    </script>
+    <script id="ch0103/06">
+        var a = +prompt('a=?'),
+            b = +prompt('b=?')
+        console.log(((b / a).toFixed(5)) * 100 + '%');
+    </script>
+    <script id="ch0103/07">
+        var x = +prompt('x=?'),
+            a = +prompt('a=?'),
+            b = +prompt('b=?'),
+            c = +prompt('c=?'),
+            d = +prompt('d=?')
+        var f = a * x * x * x + b * x * x + c * x + d
+        console.log(f.toFixed(7));
+    </script>
+    <script id="ch0103/08">
+        var f = prompt('请输入温度：')
+        var c = 5 * (f - 32) / 9
+        console.log(c.toFixed(5));
+    </script>
+    <script id="ch0103/09">
+        var r = Number(prompt('请输入半径：'));
+        var π = Math.PI;
+        console.log((2 * r).toFixed(4), +(2 * π).toFixed(4), +(π * r * r).toFixed(4));
+    </script>
+    <script id="ch0103/10">
+        var r1 = +prompt('r1'),
+            r2 = +prompt('r2')
+        var R = 1 / (1 / r1 + 1 / r2);
+        console.log(R.toFixed(2));
+    </script>
+    <script id="ch0103/11">
+        var a = +prompt('a=?'),
+            b = +prompt('b=?')
+        console.log((a * 10000000 % b * 10000000).toFixed(4));
+    </script>
+    <script id="ch0103/12">
+        var r = +prompt('r=?')
+        console.log((3 / 4 * 3.14 * r * r * r).toFixed(2));
+    </script> -->
+    <script id="ch0103/13">
+        var num = +prompt('输入三位数')
+        a = Math.floor(num / 100)
+        b = Math.floor((num - a * 100) / 10)
+        c = num - a * 100 - b * 10
+        console.log(String(c) + String(b) + a);
+    </script>
+    <script id="ch0103/14">
+        var r = +prompt('输入半径：'),
+            h = +prompt('输入高度：'),
+            π = 3.14159
+        console.log(Math.ceil(20000 / π * r * r * h));
+    </script>
+    <script id="ch0103/15">
+        var n = +prompt('苹果个数'),
+            x = +prompt('速度'),
+            y = +prompt('时间')
+        console.log(n - Math.ceil(y / x));
+    </script>
+    <script id="ch0103/16">
+        var a = +prompt('输入点'),
+            b = +prompt('输入点'),
+            c = +prompt('输入点'),
+            d = +prompt('输入点')
+        console.log(Math.sqrt(c * c + d * d) - Math.sqrt(a * a + b * b));
+    </script>
+    <script id="ch0103/17">
+        var x1 = +prompt('输入点'),
+            y1 = +prompt('输入点'),
+            x2 = +prompt('输入点'),
+            y2 = +prompt('输入点'),
+            x3 = +prompt('输入点'),
+            y3 = +prompt('输入点'),
+            a = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)),
+            b = Math.sqrt((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3)),
+            c = Math.sqrt((x3 - x2) * (x3 - x2) + (y3 - y2) * (y3 - y2)),
+            p = (a + b + c) / 2
+        console.log(Math.sqrt(p * (p - a) * (p - b) * (p - c)));
+    </script>
+    <script id="ch0103/18">
+        var a1 = +prompt('第一项'),
+            a2 = +prompt('第二项'),
+            d = a2 - a1,
+            n = +prompt('项数')
+        console.log(a1 + (n - 1) * d);
+    </script>
+    <script id="ch0103/19">
+        var a = +prompt('a=?'),
+            b = +prompt('b=?')
+        console.log(a * b);
+    </script>
+    <script id="ch0103/20">
+        var n = +prompt('项数')
+        console.log((Math.pow(2, n)));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
