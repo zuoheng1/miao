@@ -429,15 +429,15 @@
     <script id="ch0105/06">
         var n = +prompt(),
             max = -Infinity,
-            min,
+            min = Infinity,
             num
         for (var i = 0; i < n; i++) {
             num = +prompt()
             if (num > max) {
                 max = num
             }
-            if (num < max) {
-                min = num
+            if (max < min) {
+                min = max
             }
         }
         console.log(max - min);
