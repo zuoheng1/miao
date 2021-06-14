@@ -976,8 +976,8 @@
         var n = +prompt(),
             m = +prompt(),
             str = prompt(),
-            str1 = '',
-            k = +prompt()
+            k = +prompt(),
+            str1 = ''
         switch (k) {
             case 1:
                 for (let i = 1; i <= n; i++) {
@@ -987,13 +987,13 @@
                     str1 = str1 + '\n'
                 }
                 break;
-            default:
+            case 0:
                 for (let i = 1; i <= n; i++) {
                     for (let j = 1; j <= m; j++) {
-                        if (i == 1 || i == n || j == 1 || j == n) {
+                        if (i == 1 || j == 1 || i == n || j == m) {
                             str1 = str1 + str
                         } else {
-                            str1 = str1 + '\t'
+                            str1 = str1 + ' '
                         }
                     }
                     str1 = str1 + '\n'
