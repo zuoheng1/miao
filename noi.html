@@ -1136,7 +1136,7 @@
     }
 </script>
 
-<script>
+<script id="compelete-numbers">
     for (var i = 1; i <= 1000; i++) {
         var sum = 0;
         for (var j = 1; j < i; j++) {
@@ -1166,6 +1166,70 @@
         }
         return sum === num
     }
+</script>
+<script id="prime">
+    function isPrime(n) {
+        if (n < 2) {
+            return false;
+        }
+        let sqrtN = Math.sqrt(n);
+        let sum = 0;
+        for (let i = 2; i <= sqrtN; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    n = +prompt("n = ?");
+    console.log(isPrime(n) ? "YES" : "NO");
+</script>
+
+<script id="primes">
+    for (let i = 0; i < 1000; i++) {
+        if (isPrime(i)) {
+            console.log(i);
+        }
+    }
+</script>
+
+<script id="lcf&lcm">
+    function gcd(a, b) {
+        if (a < b) {
+            return gcd(b, a);
+        }
+        if (a % b == 0) {
+            return b;
+        }
+        if (a > b) {
+            return gcd(a % b, b);
+        } else {
+            return gcd(a, b % a);
+        }
+    }
+    function lcm(a, b) {
+        let d = gcd(a, b);
+        return (a * b) / d;
+    }
+
+    let a = +prompt("a = ?");
+    let b = +prompt("b = ?");
+    console.log(gcd(a, b));
+    console.log(lcm(a, b));
+</script>
+<script id="sqrt">
+    function sqrt(x) {
+        let result = x;
+        let squareResult = result * result;
+        let last = 0;
+        while (Math.abs(last - result) > 0) {
+            last = result;
+            result = (result + x / result) / 2;
+        }
+        return result;
+    }
+    x = +prompt("x = ?");
+    console.log(sqrt(x));
 </script>
 
 <body>
