@@ -958,6 +958,13 @@
     </script>
 
     <script id="ch0105/41">
+        var l = +prompt(),
+            r = +prompt()
+        for (let i = 0; i < l; i++) {
+            const element = array[i];
+
+        }
+
         var n1 = +prompt();
         var n2 = +prompt();
         var i, j, count = 0;
@@ -1044,7 +1051,122 @@
         sum += i * n
         console.log(+sum)
     </script>
+    <script id="narcissistic">
+        var n = +prompt('');
+        function narcissistic(number1) {
+            var bai = parseInt(number1 / 100); //百位
+            var shi = parseInt(number1 % 100 / 10) //十位
+            var ge = number1 % 10 //个位
+            if ((bai ** 3 + shi ** 3 + ge ** 3) == number1) {
+                return number1
+            }
+        }
+        if (narcissistic(n) == n) {
+            console.log('YES');
+        } else {
+            console.log('NO');
+        }
+    </script>
+    <script id="narcissistics">
+        function narcissistics() {
+            for (let num = 100; num < 1000; num++) {
+                var bai = parseInt(num / 100); //百位
+                var shi = parseInt(num % 100 / 10) //十位
+                var ge = num % 10 //个位
+                if ((bai ** 3 + shi ** 3 + ge ** 3) == num) {
+                    console.log(num);
+                }
+            }
+        }
+        console.log(narcissistics());
+    </script>
+    <script id="palindrom">
+        function daozhi(num) {
+            var newnumber = 0
+            while (num != 0) {
+                newnumber *= 10
+                newnumber = newnumber + (num % 10)
+                num = Math.floor(num / 10)
+            }
+            return newnumber
+        }
+        var number = parseInt(+prompt())
+        if (daozhi(number) == number) {
+            console.log('YES');
+        } else {
+            console.log('NO');
+        }
+    </script>
 </head>
+<script id="weekday">
+    var year = +prompt(),
+        month = +prompt()
+    console.log(weekday(year, month));
+    function weekday(year, month) {
+        let days
+        let sum = 0
+        for (let i = 0; i < year; i++) {
+            for (let j = 1; j <= 12; j++) {
+                if ((i % 4 == 0 && i % 100 != 0) || (i % 400 == 0) && j == 2) {
+                    days = 29
+                } else if (j == 2) {
+                    days = 28
+                } else if (j == 4 || j == 6 || j == 9 || j == 11) {
+                    days = 30
+                } else {
+                    days = 31
+                }
+                sum += days
+            }
+        }
+        for (let k = 1; k < month; k++) {
+            if ((year % 4 == 0 && i % 100 != 0) || (year % 400 == 0) && j == 2) {
+                days = 29
+            } else if (k == 2) {
+                days = 28
+            } else if (k == 4 || k == 6 || k == 9 || k == 11) {
+                days = 30
+            } else {
+                days = 31
+            }
+            sum += days
+        }
+        var weekday = sum % 7
+        return weekday;
+    }
+</script>
+
+<script>
+    for (var i = 1; i <= 1000; i++) {
+        var sum = 0;
+        for (var j = 1; j < i; j++) {
+            if (i % j == 0) {
+                sum += j;
+            }
+        }
+        if (sum == i) {
+            console.log(i);
+        }
+    }
+</script>
+
+
+<script id="compelete-number">
+    var num = +prompt()
+    console.log(complete(num) ? 'YES' : 'NO');
+    function complete(num) {
+        var sum = 0;
+        for (var i = 1; i < num; i++) {
+            if (num % i === 0) {
+                sum += i;
+            }
+        }
+        if (sum === num) {
+            return sum
+        }
+        return sum === num
+    }
+</script>
 
 <body>
 
