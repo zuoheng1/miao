@@ -1141,7 +1141,7 @@
             for (var i = 1; i <= 1000; i++) {
                 var sum = 0;
                 for (var j = 1; j < i; j++) {
-                    if (i % j == 0) {
+                    if (!(i % j)) {
                         sum += j;
                     }
                 }
@@ -1158,7 +1158,7 @@
             function complete(num) {
                 var sum = 0;
                 for (var i = 1; i < num; i++) {
-                    if (num % i === 0) {
+                    if (!(num % i)) {
                         sum += i;
                     }
                 }
@@ -1173,7 +1173,7 @@
                 let a = Math.sqrt(x);
                 let isprime = "YES";
                 for (let i = 2; i <= a; i++) {
-                    if (x % i == 0) {
+                    if (!(x % i)) {
                         isprime = "NO";
                         break;
                     }
@@ -1192,7 +1192,7 @@
                 let a = Math.sqrt(x);
                 let isprime = "YES";
                 for (let i = 2; i <= a; i++) {
-                    if (x % i == 0) {
+                    if (!(x % i)) {
                         isprime = "NO";
                         break;
                     }
@@ -1210,65 +1210,36 @@
 </script>
 
 <script id="lcf&lcm">
-            function lcf(x, y) {
-                let a,
-                    b,
-                    c;
-                if (x > y) {
-                    a = x;
-                    b = y;
-                }
-                else {
-                    a = y;
-                    b = x;
-                }
-
-                c = a % b;
-                while (c) {
-                    a = b;
-                    b = c;
-                    c = a % b;
-                }
-
-                return b;
+        function lcf(x, y) {
+            let a,
+                b,
+                c;
+            if (x > y) {
+                a = x;
+                b = y;
             }
-            let x, y;
-            x = +prompt();
-            y = +prompt();
-            let l = lcf(x, y);
-            console.log(x * y / l, l);
+            else {
+                a = y;
+                b = x;
+            }
+
+            c = a % b;
+            while (c) {
+                a = b;
+                b = c;
+                c = a % b;
+            }
+
+            return b;
+        }
+        let x, y;
+        x = +prompt();
+        y = +prompt();
+        let l = lcf(x, y);
+        console.log(x * y / l, l);
 </script>
 
 <script id="sqrt">
-        function sqrt(a) {
-            let low, high, mid;
-            if (a == 1 || a == 0) {
-                return a;
-            }
-            else if (a > 1) {
-                low = 0;
-                high = a;
-            }
-            else if (a > 0 && a < 1) {
-                low = a;
-                high = 1;
-            }
-            mid = (low + high) / 2;
-            while (Math.abs(mid * mid - a) > 1e-6) {
-                if (mid * mid > a) {
-                    high = mid;
-                    mid = (low + high) / 2;
-                }
-                else {
-                    low = mid;
-                    mid = (low + high) / 2;
-                }
-            }
-
-            return mid;
-        }
-
-        console.log(sqrt(+prompt()).toFixed(3));
 
 </script>
 
