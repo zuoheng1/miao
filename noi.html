@@ -1105,7 +1105,7 @@
     function weekday(year, month) {
         let days
         let sum = 0
-        for (let i = 0; i < year; i++) {
+        for (let i = 1; i < year; i++) {
             for (let j = 1; j <= 12; j++) {
                 if ((i % 4 == 0 && i % 100 != 0) || (i % 400 == 0) && j == 2) {
                     days = 29
@@ -1120,7 +1120,7 @@
             }
         }
         for (let k = 1; k < month; k++) {
-            if ((year % 4 == 0 && i % 100 != 0) || (year % 400 == 0) && j == 2) {
+            if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) && k == 2) {
                 days = 29
             } else if (k == 2) {
                 days = 28
@@ -1131,12 +1131,12 @@
             }
             sum += days
         }
-        var weekday = sum % 7
+        var weekday = (sum + 1) % 7
         return weekday;
     }
 </script>
 
-<script id="compelete-numbers">
+<script id="complete-numbers">
     for (var i = 1; i <= 1000; i++) {
         var sum = 0;
         for (var j = 1; j < i; j++) {
@@ -1151,7 +1151,7 @@
 </script>
 
 
-<script id="compelete-number">
+<script id="complete-number">
     var num = +prompt()
     console.log(complete(num) ? 'YES' : 'NO');
     function complete(num) {
