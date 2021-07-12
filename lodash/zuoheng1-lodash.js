@@ -71,6 +71,13 @@ var zuoheng1 = function () {
     }
     return result
   }
+  function reduce(array, initial, f) {
+    var result = initial
+    for (var i = 0; i < array.length; i++) {
+      result = f(result, array)
+    }
+    return result
+  }
   return {
     chunk: chunk,
     compact: compact,
@@ -78,5 +85,6 @@ var zuoheng1 = function () {
     zip: zip,
     uniq: uniq,
     map: map,
+    reduce: reduce,
   }
 }()
