@@ -21,9 +21,42 @@ var zuoheng1 = function () {
     }
   }
 
+  function zip(...arr1) {//给数组脱马甲
+    var result = [],
+      arr = [].concat(...arr1),
+      a = [],
+      b = []
+    for (var i = 0; i < arr.length; i++) {
+      i % 2 == 0 ? a.push(arr[i]) : b.push(arr[i])
+    }
+    result.push(a)
+    result.push(b)
+    return result
+  }
+
+  function uniq(array) {
+    var arr = []
+    for (var k of array) {
+      if (!arr.includes(k)) {
+        arr.push(k)
+      }
+    }
+    return k
+  }
+  function map(arr, f) {
+    var result = [],
+      it = iterator(f)
+    for (var k of arr) {
+      result.push(it(k))
+    }
+    return result
+  }
   return {
     chunk: chunk,
     compact: compact,
-    forEach: forEach
+    forEach: forEach,
+    zip: zip,
+    uniq: uniq,
+    map: map,
   }
 }()
