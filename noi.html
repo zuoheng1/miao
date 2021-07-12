@@ -1136,36 +1136,34 @@
                 return weekday;
             }
 </script>
-
 <script id="complete-numbers">
-            for (var i = 1; i <= 1000; i++) {
-                var sum = 0;
-                for (var j = 1; j < i; j++) {
-                    if (!(i % j)) {
-                        sum += j;
+            function iscompleteNumber(n) {
+                var sum = 0
+                for (let i = 1; i <= n / 2; i++) {
+                    if (n % i == 0) {
+                        sum += i
                     }
                 }
-                if (sum == i) {
-                    console.log(i);
+                return sum == n
+            }
+            for (var x = 1; x <= 1000; x++) {
+                if (iscompleteNumber(x)) {
+                    console.log(x)
                 }
             }
+
 </script>
 
 
 <script id="complete-number">
-            var num = +prompt()
-            console.log(complete(num) ? 'YES' : 'NO');
-            function complete(num) {
-                var sum = 0;
-                for (var i = 1; i < num; i++) {
-                    if (!(num % i)) {
-                        sum += i;
+            function iscompleteNumber(n) {
+                var sum = 0
+                for (var i = 1; i <= n; i++) {
+                    if (n % i == 0) {
+                        sum += i
                     }
                 }
-                if (sum === num) {
-                    return sum
-                }
-                return sum === num
+                return sum == n
             }
 </script>
 <script id="prime">
@@ -1210,6 +1208,31 @@
 </script>
 
 <script id="lcf&lcm">
+        function lcf(num1, num2) {
+            if (num1 > num2) {
+                a = num1 % num2
+                while (a) {
+                    num1 = num2
+                    num2 = a
+                    a = num1 % num2
+                }
+                return num2
+            } else {
+                a = num2 % num1
+                while (a) {
+                    num2 = num1
+                    num1 = a
+                    a = num2 % num1
+                }
+                return num1
+            }
+        }
+        let num1 = +prompt(),
+            num2 = +prompt(),
+            c = lcf(num1, num2)
+        console.log(num1 * num2 / c, c);
+
+
         function lcf(x, y) {
             let a,
                 b,
