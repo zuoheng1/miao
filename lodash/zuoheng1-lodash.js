@@ -61,7 +61,7 @@ var zuoheng1 = function () {
         arr.push(k)
       }
     }
-    return k
+    return arr
   }
   function map(arr, f) {
     var result = [],
