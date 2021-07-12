@@ -1,4 +1,24 @@
 var zuoheng1 = function () {
+  function iterator(it) {
+    if (typeof it === "string") {
+      return val => val[it];
+    }
+    if (typeof it === "function") {
+      return it;
+    }
+    if (Array.isArray(it)) {
+      return obj => obj[it[0]] === it[1]
+    }
+    if (typeof it === "object") {
+      return function (obj) {
+        for (let key in it) {
+          if (obj[key] !== it[key])
+            return false;
+        }
+        return true;
+      }
+    }
+  }
   function chunk(array, size) {
     var len = array.length,
       res = []
