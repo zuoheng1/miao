@@ -57,10 +57,11 @@ var zuoheng1 = function () {
     return array.filter(i => !!i == true)
   }
 
-  function forEach(array, action) {
-    for (var i = 0; i < array.length; i++) {
-      action(array[i])
+  function forEach(arr, f) {
+    for (var i = 0; i < arr.length; i++) {
+      f(arr[i], i, arr)
     }
+    return arr
   }
 
   function zip(...arr1) {//给数组脱马甲
@@ -145,6 +146,8 @@ var zuoheng1 = function () {
     }
     return arr
   }
+
+
   return {
     chunk: chunk,
     compact: compact,
