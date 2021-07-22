@@ -1,24 +1,17 @@
 var zuoheng1 = function () {
-  function iterator(it) {
-    if (typeof it === "string") {
-      return val => val[it];
-    }
-    if (typeof it === "function") {
-      return it;
-    }
-    if (Array.isArray(it)) {
-      return obj => obj[it[0]] === it[1]
-    }
-    if (typeof it === "object") {
-      return function (obj) {
-        for (let key in it) {
-          if (obj[key] !== it[key])
-            return false;
-        }
-        return true;
-      }
+
+  //辅助函数
+  function remove(array, f) {
+    var flag = true
+    for (var i = 0; i < array.length; i++) {
+
     }
   }
+  function initial(array) {
+    array.length = array.length - 1
+    return array
+  }
+  //
   function chunk(array, size) {
     var len = array.length,
       res = []
@@ -30,7 +23,36 @@ var zuoheng1 = function () {
     }
     return res
   }
-
+  function filter(array, f) {
+    var res = []
+    if (typeof (f) === 'function') {
+      for (var i = 0; i < array.length; i++) {
+        if (f(array[i])) {
+          res.push(array[i])
+        }
+      }
+    } else if (typeof (f) === 'object') {
+      for (var i = 0; i < array.length; i++) {
+        var flag = 1
+        for (let j in f) {
+          if (!array[i][j] || array[i][j] != f[j]) {
+            flag = 0
+            break
+          }
+        }
+        if (flag) {
+          res.push(array[i])
+        }
+      }
+    } else {
+      for (var i = 0; i < array.length; i++) {
+        if (array[i][f]) {
+          res.push(array[i])
+        }
+      }
+    }
+    return res
+  }
   function compact(array) {
     return array.filter(i => !!i == true)
   }
@@ -78,6 +100,51 @@ var zuoheng1 = function () {
     }
     return result
   }
+  function indexOf(array, value, fromIndex = 0) {
+    for (var i = fromIndex; i < array.length; i++) {
+      if (array[i] === value) {
+        return i
+      }
+    }
+  }
+  function difference(array, ...value) {
+    var obj = {},
+      res = {}
+    for (var i = 0; i < value.length; i++) {
+      for (var j = 0; j < value[i].length; j++) {
+        obj[value[i][j]] = i
+      }
+    }
+    for (let i = 0; i < array.length; i++) {
+      if (obj[i][j] == undefined) {
+        res.push(array[i])
+      }
+    }
+    return res
+  }
+  function reverse(array) {
+    var left = 0,
+      right = array.length - 1,
+      temp
+    while (left < right) {
+      temp = array[left]
+      array[left] = array[right]
+      array[right] = temp
+      left++
+      right--
+    }
+    return array
+  }
+  function drop(arr, n = 1) {
+    let len = arr.length
+    if (len < n) {
+      return []
+    }
+    for (let i = 0; i < n; i++) {
+      arr.shift(arr[i])
+    }
+    return arr
+  }
   return {
     chunk: chunk,
     compact: compact,
@@ -86,5 +153,11 @@ var zuoheng1 = function () {
     uniq: uniq,
     map: map,
     reduce: reduce,
+    indexOf: indexOf,
+    reverse: reverse,
+    initial: initial,
+    filter: filter,
+    difference: difference,
+    drop: drop,
   }
 }()
