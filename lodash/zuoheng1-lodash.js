@@ -26,7 +26,7 @@ var zuoheng1 = function() {
 
     function property(path) {
         return function(obj) {
-            return get(obj, path)
+            return obj[path]
         }
     }
 
