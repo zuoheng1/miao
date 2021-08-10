@@ -206,17 +206,13 @@ var zuoheng1 = function() {
         return prime
     }
 
-    function map(collection, f) {
-        let it = iterator(f)
-        let res = []
-        if (getType(collection) == 'object') {
-            for (let key in collection) {
-                res.push(it(collection[key], key, collection))
-            }
-        } else {
-            collection.forEach((item, idx, arr) => res.push(it(item, idx, arr)))
+    function map(collection, callback) {
+        callback = iteratee(callback)
+        var result = []
+        for (let i = 0; i < collection.length; i++) {
+            result.push(callback(collection[i], i, collection))
         }
-        return res
+        return result
     }
 
     function indexOf(array, value, fromIndex = 0) {
