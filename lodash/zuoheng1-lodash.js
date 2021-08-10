@@ -538,242 +538,261 @@ var zuoheng1 = function() {
         return res
     }
 
-    function differenceBy(array, args) {
-        let res = [],
-            predicate = args[args.length - 1]
-        args = flattenDeep(args)
-        if (typeof predicate === 'function') {
-            predicate = args.pop()
-            for (let i = 0; i < args.length - 1; i++) {
-                args[i] = predicate(arg[i])
+    function differenceBy(array, [values], [iteratee = _.identity])) {
+    let res = [],
+        predicate = args[args.length - 1]
+    args = flattenDeep(args)
+    if (typeof predicate === 'function') {
+        predicate = args.pop()
+        for (let i = 0; i < args.length - 1; i++) {
+            args[i] = predicate(arg[i])
+        }
+    }
+}
+
+function differenceWith(array, ...args) {
+    let group = [].concat(...args),
+        comparator = args.pop()
+    return filter(array, function(value) {
+        for (let i = 0; i < group.length; i++) {
+            if (comparator(value, group[i])) {
+                return false
             }
+        }
+        return true
+    })
+}
+
+function dropRight(array, n = 1) {
+    let res = []
+    for (let i = 0; i < array.length - n; i++) {
+        res.push(array[i])
+    }
+    return res
+}
+
+function dropRightWhile(array, callback) {
+    callback = iteratee(callback)
+    for (let i = 0; i < array.length; i++) {
+        if (!callback(array[i])) {
+            break
+        }
+    }
+    return array.slice(0, i)
+}
+
+function zip(...arr1) { //给数组脱马甲
+    var result = [],
+        arr = [].concat(...arr1),
+        a = [],
+        b = []
+    for (var i = 0; i < arr.length; i++) {
+        i % 2 == 0 ? a.push(arr[i]) : b.push(arr[i])
+    }
+    result.push(a)
+    result.push(b)
+    return result
+}
+
+function parseJson(json) {
+    var i = 0,
+        str = json
+    return parseValue()
+
+
+
+    function parseValue() {
+        if (str[i] === '{') {
+            return parseObject()
+        } else if (str[i] === '[') {
+            return parseArray()
+        } else if (str[i] === 'n') {
+            return parseNull()
+        } else if (str[i] === '"') {
+            return parseString()
+        } else if (str[i] === 't') {
+            return parseTrue()
+        } else if (str[i] === 'f') {
+            return parseFalse()
+        } else {
+            return parseNumber()
         }
     }
 
-    function differenceWith(array, ...args) {
-        let group = [].concat(...args),
-            comparator = args.pop()
-        return filter(array, function(value) {
-            for (let i = 0; i < group.length; i++) {
-                if (comparator(value, group[i])) {
-                    return false
-                }
-            }
-            return true
-        })
-    }
-
-    function zip(...arr1) { //给数组脱马甲
-        var result = [],
-            arr = [].concat(...arr1),
-            a = [],
-            b = []
-        for (var i = 0; i < arr.length; i++) {
-            i % 2 == 0 ? a.push(arr[i]) : b.push(arr[i])
+    //先实现解析字符串
+    function parseString() {
+        var result = ''
+        i++ //跳过当前引号
+        while (str[i] != '"') {
+            result += str[i++]
         }
-        result.push(a)
-        result.push(b)
+        i++
         return result
     }
-
-    function parseJson(json) {
-        var i = 0,
-            str = json
-        return parseValue()
-
-
-
-        function parseValue() {
-            if (str[i] === '{') {
-                return parseObject()
-            } else if (str[i] === '[') {
-                return parseArray()
-            } else if (str[i] === 'n') {
-                return parseNull()
-            } else if (str[i] === '"') {
-                return parseString()
-            } else if (str[i] === 't') {
-                return parseTrue()
-            } else if (str[i] === 'f') {
-                return parseFalse()
-            } else {
-                return parseNumber()
-            }
+    //直接往后读出4个字符，若不是null，直接报错
+    function parseNull() {
+        var content = str.substr(i, 4)
+        if (content === 'null') {
+            i += 4
+            return null
+        } else {
+            throw new Error('Unexpected char at' + i)
         }
-
-        //先实现解析字符串
-        function parseString() {
-            var result = ''
-            i++ //跳过当前引号
-            while (str[i] != '"') {
-                result += str[i++]
-            }
-            i++
-            return result
+    }
+    //同上，往后读5个字符
+    function parseFalse() {
+        var content = str.substr(i, 5)
+        if (content === 'false') {
+            i += 5
+            return false
+        } else {
+            throw new Error('Unexpected char at' + i)
         }
-        //直接往后读出4个字符，若不是null，直接报错
-        function parseNull() {
-            var content = str.substr(i, 4)
-            if (content === 'null') {
-                i += 4
-                return null
-            } else {
-                throw new Error('Unexpected char at' + i)
-            }
+    }
+    //同上
+    function parseTrue() {
+        var content = str.substr(i, 4)
+        if (content === 'true') {
+            i += 4
+            return true
+        } else {
+            throw new Error('Unexpected char at' + i)
         }
-        //同上，往后读5个字符
-        function parseFalse() {
-            var content = str.substr(i, 5)
-            if (content === 'false') {
-                i += 5
-                return false
-            } else {
-                throw new Error('Unexpected char at' + i)
+    }
+    //注意类数组情况
+    function parseArray() {
+        i++
+        var result = []
+        while (str[i] !== ']') {
+            result.push(parseValue())
+            if (str[i] === ',') {
+                i++ //跳过逗号
             }
+            //解析的最后一个值没遇到逗号，解析完成
         }
-        //同上
-        function parseTrue() {
-            var content = str.substr(i, 4)
-            if (content === 'true') {
-                i += 4
-                return true
-            } else {
-                throw new Error('Unexpected char at' + i)
-            }
-        }
-        //注意类数组情况
-        function parseArray() {
-            i++
-            var result = []
-            while (str[i] !== ']') {
-                result.push(parseValue())
-                if (str[i] === ',') {
-                    i++ //跳过逗号
-                }
-                //解析的最后一个值没遇到逗号，解析完成
-            }
-            i++
-            return result
-        }
-        //
-        function parseObject() {
-            i++ //跳过{
-            var result = {}
-            while (str[i] !== '}') {
-                var key = parseString()
-                i++ //跳过
-                var value = parseValue()
-                result[key] = value //构造键值对
-                if (str[i] === ',') {
-                    i++
-                }
-            }
-            i++
-            return result
-        }
-        //f
-        function parseNumber() {
-            var result = ''
-            while (isNumberChar(str[i])) {
-                result += str[i]
+        i++
+        return result
+    }
+    //
+    function parseObject() {
+        i++ //跳过{
+        var result = {}
+        while (str[i] !== '}') {
+            var key = parseString()
+            i++ //跳过
+            var value = parseValue()
+            result[key] = value //构造键值对
+            if (str[i] === ',') {
                 i++
             }
-            return Number(result)
         }
-        //辅助函数判断val是否为JSON中的数值符号
-        function isNumberChar(val) {
-            var chars = {
-                '-': true,
-                '+': true,
-                'E': true,
-                'e': true,
-                '.': true
-            }
-            if (chars[val]) {
-                return true
-            }
-            if (val >= '0' && val <= '9') {
-                return true
-            }
-            return false
+        i++
+        return result
+    }
+    //f
+    function parseNumber() {
+        var result = ''
+        while (isNumberChar(str[i])) {
+            result += str[i]
+            i++
         }
+        return Number(result)
     }
-
-    function stringifyJson(obj) {
-        if (typeof obj === null) {
-            return null
+    //辅助函数判断val是否为JSON中的数值符号
+    function isNumberChar(val) {
+        var chars = {
+            '-': true,
+            '+': true,
+            'E': true,
+            'e': true,
+            '.': true
         }
+        if (chars[val]) {
+            return true
+        }
+        if (val >= '0' && val <= '9') {
+            return true
+        }
+        return false
     }
+}
 
-    return {
-        chunk: chunk,
-        compact: compact,
-        concat: concat,
-        difference: difference,
-        differenceWith: differenceWith,
-        differenceBy: differenceBy,
-
-        zip: zip,
-        uniq: uniq,
-        map: map,
-
-        indexOf: indexOf,
-        reverse: reverse,
-
-        filter: filter,
-        drop: drop,
-        toArray: toArray,
-
-
-
-
-        isArguments: isArguments,
-        isArray: isArray,
-        isArrayBuffer: isArrayBuffer,
-        isArrayLike: isArrayLike,
-        isArrayLikeObject: isArrayLikeObject,
-        isBoolean: isBoolean,
-        isElement: isElement,
-        isDate: isDate,
-        isEmpty: isEmpty,
-        isError: isError,
-        isFinite: isFinite,
-        isFunction: isFunction,
-        isInteger: isInteger,
-        isLength: isLength,
-        isMap: isMap,
-        isNaN: isNaN,
-        isNil: isNil,
-        isNull: isNull,
-        isNumber: isNumber,
-        isObject: isObject,
-        isObjectLike: isObjectLike,
-        isPlainObject: isPlainObject,
-        isSafeInteger: isSafeInteger,
-        isSet: isSet,
-        isString: isString,
-        isSymbol: isSymbol,
-        isRegExp: isRegExp,
-        isTypedArray: isTypedArray,
-        isUndefined: isUndefined,
-        isWeakMap: isWeakMap,
-        isWeakSet: isWeakSet,
-        toPath: toPath,
-        property: property,
-        isMatch: isMatch,
-        matches: matches,
-        size: size,
-        isEqual: isEqual,
-        iteratee: iteratee,
-        matchesProperty: matchesProperty,
-        indexOf: indexOf,
-        get: get,
-        isPath: isPath,
-        map: map,
-        filter: filter,
-        reduce: reduce,
-        includes: includes,
-        parseJson: parseJson,
-        stringifyJson: stringifyJson,
+function stringifyJson(obj) {
+    if (typeof obj === null) {
+        return null
     }
+}
+
+return {
+    chunk: chunk,
+    compact: compact,
+    concat: concat,
+    difference: difference,
+    differenceWith: differenceWith,
+    differenceBy: differenceBy,
+    dropRight: dropRight,
+    dropRightWhile: dropRightWhile,
+    zip: zip,
+    uniq: uniq,
+    map: map,
+
+    indexOf: indexOf,
+    reverse: reverse,
+
+    filter: filter,
+    drop: drop,
+    toArray: toArray,
+
+
+
+
+    isArguments: isArguments,
+    isArray: isArray,
+    isArrayBuffer: isArrayBuffer,
+    isArrayLike: isArrayLike,
+    isArrayLikeObject: isArrayLikeObject,
+    isBoolean: isBoolean,
+    isElement: isElement,
+    isDate: isDate,
+    isEmpty: isEmpty,
+    isError: isError,
+    isFinite: isFinite,
+    isFunction: isFunction,
+    isInteger: isInteger,
+    isLength: isLength,
+    isMap: isMap,
+    isNaN: isNaN,
+    isNil: isNil,
+    isNull: isNull,
+    isNumber: isNumber,
+    isObject: isObject,
+    isObjectLike: isObjectLike,
+    isPlainObject: isPlainObject,
+    isSafeInteger: isSafeInteger,
+    isSet: isSet,
+    isString: isString,
+    isSymbol: isSymbol,
+    isRegExp: isRegExp,
+    isTypedArray: isTypedArray,
+    isUndefined: isUndefined,
+    isWeakMap: isWeakMap,
+    isWeakSet: isWeakSet,
+    toPath: toPath,
+    property: property,
+    isMatch: isMatch,
+    matches: matches,
+    size: size,
+    isEqual: isEqual,
+    iteratee: iteratee,
+    matchesProperty: matchesProperty,
+    indexOf: indexOf,
+    get: get,
+    isPath: isPath,
+    map: map,
+    filter: filter,
+    reduce: reduce,
+    includes: includes,
+    parseJson: parseJson,
+    stringifyJson: stringifyJson,
+}
 }()
