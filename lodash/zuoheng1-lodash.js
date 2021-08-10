@@ -30,14 +30,14 @@ var zuoheng1 = function() {
         }
     }
 
-    function get(object, path) {
+    function get(object, path, defaultValue = undefined) {
         if (isArray(path) || isPath(path)) {
             if (isString(path)) {
                 path = toPath(path)
             }
             for (let i = path[0]; i < path.length; i++) {
                 if (object[i] == undefined) {
-                    return undefined
+                    return defaultValue
                 }
                 object = object[i]
             }
@@ -656,6 +656,12 @@ var zuoheng1 = function() {
         }
     }
 
+    function stringifyJson(obj) {
+        if (typeof obj === null) {
+            return null
+        }
+    }
+
     return {
         chunk: chunk,
         compact: compact,
@@ -722,5 +728,6 @@ var zuoheng1 = function() {
         map: map,
         filter: filter,
         parseJson: parseJson,
+        stringifyJson: stringifyJson,
     }
 }()
