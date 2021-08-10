@@ -355,9 +355,22 @@ var zuoheng1 = function() {
         return getType1(value) === '[object Map]'
     }
 
-    function isMatch(value) {
-
+    function isMatch(object, source) {
+        if (isObject(source)) {
+            for (const key in source) {
+                if (isObject(object[key])) {
+                    if (!isEqual(object[key], source[key])) {
+                        return false;
+                    };
+                } else if (object[key] != source[key]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
+
 
     function isMatchWith() {
 
