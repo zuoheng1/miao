@@ -35,8 +35,8 @@
             dir = 0
             //首先给给document绑定一个键盘事件
         document.onkeydown = function(event) {
-            event = window.event; //解决IE兼容问题
-            dir = event.keyCode;
+            event = window.event
+            dir = event.keyCode
         }
         document.onkeyup = function() {
             dir = 0;
@@ -54,7 +54,6 @@
                     break;
                 case 40:
                     box1.style.top = box.offsetTop + speed + "px";
-                    //console.log(box.style.top);
                     break;
             }
         }, 30); //利用定时调用方法，解决卡顿问题
@@ -71,7 +70,6 @@
                     break;
                 case 83:
                     cirle1.style.top = cirle.offsetTop + speed + "px";
-                    //console.log(box.style.top);
                     break;
             }
         }, 30);
