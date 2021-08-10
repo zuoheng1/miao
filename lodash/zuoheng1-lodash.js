@@ -653,14 +653,14 @@ var zuoheng1 = function() {
         difference: difference,
         differenceWith: differenceWith,
         differenceBy: differenceBy,
-        forEach: forEach,
+
         zip: zip,
         uniq: uniq,
         map: map,
-        reduce: reduce,
+
         indexOf: indexOf,
         reverse: reverse,
-        initial: initial,
+
         filter: filter,
         drop: drop,
         toArray: toArray,
@@ -675,7 +675,6 @@ var zuoheng1 = function() {
         isArrayLikeObject: isArrayLikeObject,
         isBoolean: isBoolean,
         isElement: isElement,
-        isBuffer: isBuffer,
         isDate: isDate,
         isEmpty: isEmpty,
         isError: isError,
@@ -706,17 +705,12 @@ var zuoheng1 = function() {
         size: size,
         isEqual: isEqual,
         iteratee: iteratee,
-        identity: identity,
         matchesProperty: matchesProperty,
-        forEach: forEach,
         indexOf: indexOf,
-        includes: includes,
         get: get,
         isPath: isPath,
         map: map,
         filter: filter,
-        reduce: reduce,
-        every: every,
         parseJson: parseJson,
     }
 }()
