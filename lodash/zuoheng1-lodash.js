@@ -581,6 +581,16 @@ var zuoheng1 = function() {
         return array.slice(0, i)
     }
 
+    function dropWhile(array, callback) {
+        callback = iteratee(callback)
+        for (let i = 0; i < array.length; i++) {
+            if (!callback(array[i])) {
+                break
+            }
+        }
+        return array.slice(i)
+    }
+
     function zip(...arr1) { //给数组脱马甲
         var result = [],
             arr = [].concat(...arr1),
@@ -732,6 +742,7 @@ var zuoheng1 = function() {
         differenceBy: differenceBy,
         dropRight: dropRight,
         dropRightWhile: dropRightWhile,
+        dropWhile: dropWhile,
         zip: zip,
         uniq: uniq,
         map: map,
