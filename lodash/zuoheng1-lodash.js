@@ -151,7 +151,7 @@ var zuoheng1 = function() {
     function filter(collection, callback) {
         callback = iteratee(callback)
         let res = []
-        for (var key of collection) {
+        for (var key in collection) {
             if (callback(collection[key], key, collection)) {
                 res.push(collection[key])
             }
@@ -198,11 +198,11 @@ var zuoheng1 = function() {
     function reduce(collection, predicate, prime) {
         predicate = iteratee(predicate)
         let count = 0
-        for (let k of collection) {
+        for (let k in collection) {
             if (count == 0 && prime == undefined) {
                 prime = collection[k]
             } else {
-                prime = predicate(prime, collection[k], k, collection)
+                prime = predicate(prime, collection[k], collection)
                 count++
             }
         }
@@ -527,12 +527,12 @@ var zuoheng1 = function() {
         return res
     }
 
-    function difference(array, ...value) {
-        let obj = concat([], ...value),
+    function difference(array, ...args) {
+        let obj = [].concat(...args),
             res = []
         for (let i = 0; i < array.length; i++) {
-            if (obj.indexOf(value[i]) == -1) {
-                res.push(value[i])
+            if (obj.indexOf(array[i]) == -1) {
+                res.push(array[i])
             }
         }
         return res
