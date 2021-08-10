@@ -1,5 +1,4 @@
 var zuoheng1 = function() {
-
     //辅助函数
     function iteratee(predicate) {
         if (getType(predicate) === 'function') {
@@ -133,11 +132,7 @@ var zuoheng1 = function() {
         return obj.prototype.toString.call(obj)
     }
     //需完善
-    function hasSameAtr(obj1, obj2) {
-        for (let k in obj1) {
-            if (typeof obj1[k] != 'object')
-        }
-    }
+
 
     function size(value) {
         if (Object.prototype.toString.call(value) === '[object,Object]') {
@@ -529,121 +524,123 @@ var zuoheng1 = function() {
         var i = 0,
             str = json
         return parseValue()
-    }
 
 
-    function parseValue() {
-        if (str[i] === '{') {
-            return parseObject()
-        } else if (str[i] === '[') {
-            return parseArray()
-        } else if (str[i] === 'n') {
-            return parseNull()
-        } else if (str[i] === '"') {
-            return parseString()
-        } else if (str[i] === 't') {
-            return parseTrue()
-        } else if (str[i] === 'f') {
-            return parseFalse()
-        } else {
-            return parseNumber()
-        }
-    }
-    //先实现解析字符串
-    function parseString() {
-        var result = ''
-        i++ //跳过当前引号
-        while (str[i] != '"') {
-            result += str[i++]
-        }
-        i++
-        return result
-    }
-    //直接往后读出4个字符，若不是null，直接报错
-    function parseNull() {
-        var content = str.substr(i, 4)
-        if (content === 'null') {
-            i += 4
-            return null
-        } else {
-            throw new Error('Unexpected char at' + i)
-        }
-    }
-    //同上，往后读5个字符
-    function parseFalse() {
-        var content = str.substr(i, 5)
-        if (content === 'false') {
-            i += 5
-            return false
-        } else {
-            throw new Error('Unexpected char at' + i)
-        }
-    }
-    //同上
-    function parseTrue() {
-        var content = str.substr(i, 4)
-        if (content === 'true') {
-            i += 4
-            return true
-        } else {
-            throw new Error('Unexpected char at' + i)
-        }
-    }
-    //注意类数组情况
-    function parseArray() {
-        i++
-        var result = []
-        while (str[i] !== ']') {
-            result.push(parseValue())
-            if (str[i] === ',') {
-                i++ //跳过逗号
+
+        function parseValue() {
+            if (str[i] === '{') {
+                return parseObject()
+            } else if (str[i] === '[') {
+                return parseArray()
+            } else if (str[i] === 'n') {
+                return parseNull()
+            } else if (str[i] === '"') {
+                return parseString()
+            } else if (str[i] === 't') {
+                return parseTrue()
+            } else if (str[i] === 'f') {
+                return parseFalse()
+            } else {
+                return parseNumber()
             }
-            //解析的最后一个值没遇到逗号，解析完成
         }
-        i++
-        return result
-    }
-    //
-    function parseObject() {
-        i++ //跳过{
-        var result = {}
-        while (str[i] !== '}') {
-            var key = parseString()
-            i++ //跳过
-            var value = parseValue()
-            result[key] = value //构造键值对
-            if (str[i] === ',') {
+
+        //先实现解析字符串
+        function parseString() {
+            var result = ''
+            i++ //跳过当前引号
+            while (str[i] != '"') {
+                result += str[i++]
+            }
+            i++
+            return result
+        }
+        //直接往后读出4个字符，若不是null，直接报错
+        function parseNull() {
+            var content = str.substr(i, 4)
+            if (content === 'null') {
+                i += 4
+                return null
+            } else {
+                throw new Error('Unexpected char at' + i)
+            }
+        }
+        //同上，往后读5个字符
+        function parseFalse() {
+            var content = str.substr(i, 5)
+            if (content === 'false') {
+                i += 5
+                return false
+            } else {
+                throw new Error('Unexpected char at' + i)
+            }
+        }
+        //同上
+        function parseTrue() {
+            var content = str.substr(i, 4)
+            if (content === 'true') {
+                i += 4
+                return true
+            } else {
+                throw new Error('Unexpected char at' + i)
+            }
+        }
+        //注意类数组情况
+        function parseArray() {
+            i++
+            var result = []
+            while (str[i] !== ']') {
+                result.push(parseValue())
+                if (str[i] === ',') {
+                    i++ //跳过逗号
+                }
+                //解析的最后一个值没遇到逗号，解析完成
+            }
+            i++
+            return result
+        }
+        //
+        function parseObject() {
+            i++ //跳过{
+            var result = {}
+            while (str[i] !== '}') {
+                var key = parseString()
+                i++ //跳过
+                var value = parseValue()
+                result[key] = value //构造键值对
+                if (str[i] === ',') {
+                    i++
+                }
+            }
+            i++
+            return result
+        }
+        //f
+        function parseNumber() {
+            var result = ''
+            while (isNumberChar(str[i])) {
+                result += str[i]
                 i++
             }
+            return Number(result)
         }
-        i++
-        return result
-    }
-    //f
-    function parseNumber() {
-        var result = ''
-        while (isNumberChar(str[i])) {
-            result += str[i]
-            i++
+        //辅助函数判断val是否为JSON中的数值符号
+        function isNumberChar(val) {
+            var chars = {
+                '-': true,
+                '+': true,
+                'E': true,
+                'e': true,
+                '.': true
+            }
+            if (chars[val]) {
+                return true
+            }
+            if (val >= '0' && val <= '9') {
+                return true
+            }
+            return false
         }
-        return Number(result)
-    }
-    //辅助函数判断val是否为JSON中的数值符号
-    function isNumberChar(val) {
-        var chars = {
-            '-': true,
-            '+': true,
-            'E': true,
-            'e': true,
-            '.': true
-        }
-        if (chars[val]) {
-            return true
-        }
-        if (val >= '0' && val <= '9') {
-            return true
-        }
-        return false
     }
 
     return {
