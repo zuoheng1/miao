@@ -188,16 +188,14 @@
         function guiDao(R, name, V, D) {
             var name = document.getElementById(name),
                 pos = 0,
-                id = setInterval(frame, 0.5)
-
-            function frame() {
-                pos = pos + (Math.PI * (V / 10000))
-                x = Math.cos(pos) * R - D / 2
-                y = Math.sin(pos) * R - D / 2
-                    //为行星
-                name.style.left = x + 'px'
-                name.style.top = y + 'px'
-            }
+                id = setInterval(() => {
+                    pos = pos + (Math.PI * (V / 10000))
+                    x = Math.cos(pos) * R - D / 2
+                    y = Math.sin(pos) * R - D / 2
+                        //为行星
+                    name.style.left = x + 'px'
+                    name.style.top = y + 'px'
+                }, 0.5)
             return null
         }
         document.getElementById("planet1").innerHTML = guiDao(100, "planet1", 47.87, 10)

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>div随键盘控制移动</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            position: absolute;
+        }
+        
+        #cirle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+            background-color: red;
+            position: absolute;
+            left: 200px;
+            top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <div id="cirle"></div>
+    <script>
+        var box1 = document.querySelector("#box"),
+            cirle1 = document.querySelector('#cirle'),
+            speed = 10,
+            dir = 0
+            //首先给给document绑定一个键盘事件
+        document.onkeydown = function(event) {
+            event = window.event; //解决IE兼容问题
+            dir = event.keyCode;
+        }
+        document.onkeyup = function() {
+            dir = 0;
+        }
+        setInterval(() => {
+            switch (dir) {
+                case 37:
+                    box1.style.left = box.offsetLeft - speed + "px";
+                    break;
+                case 38:
+                    box1.style.top = box.offsetTop - speed + "px";
+                    break;
+                case 39:
+                    box1.style.left = box.offsetLeft + speed + "px";
+                    break;
+                case 40:
+                    box1.style.top = box.offsetTop + speed + "px";
+                    //console.log(box.style.top);
+                    break;
+            }
+        }, 30); //利用定时调用方法，解决卡顿问题
+        setInterval(() => {
+            switch (dir) {
+                case 65:
+                    cirle1.style.left = cirle.offsetLeft - speed + "px";
+                    break;
+                case 87:
+                    cirle1.style.top = cirle.offsetTop - speed + "px";
+                    break;
+                case 68:
+                    cirle1.style.left = cirle.offsetLeft + speed + "px";
+                    break;
+                case 83:
+                    cirle1.style.top = cirle.offsetTop + speed + "px";
+                    //console.log(box.style.top);
+                    break;
+            }
+        }, 30);
+    </script>
+</body>
+
+</html>
