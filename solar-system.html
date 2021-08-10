@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>太阳系旋转</title>
+    <style>
+        body,
+        html {
+            background-color: black;
+            position: relative;
+            height: 100%;
+            margin: 0px;
+            background-size: 100%, 100%;
+        }
+        
+        #Sun {
+            width: 120px;
+            height: 120px;
+            border-radius: 180px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -60px;
+            margin-left: -60px;
+            background-image: radial-gradient(yellow, orange, orange);
+        }
+        
+        #No1 {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            left: 50vw;
+            top: 50vh;
+        }
+        
+        #planet1 {
+            width: 15px;
+            height: 15px;
+            border-radius: 30px;
+            position: absolute;
+            background-image: radial-gradient(#504E51, #97979F);
+        }
+        
+        #No2 {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            left: 50vw;
+            top: 50vh;
+        }
+        
+        #planet2 {
+            width: 30px;
+            height: 30px;
+            border-radius: 100px;
+            position: absolute;
+            background-image: radial-gradient(#BBB7AB, orange);
+        }
+        
+        #No3 {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            left: 50vw;
+            top: 50vh;
+        }
+        
+        #planet3 {
+            width: 30px;
+            height: 30px;
+            border-radius: 100px;
+            position: absolute;
+            background-image: radial-gradient(green, blue);
+        }
+        
+        #No4 {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            left: 50vw;
+            top: 50vh;
+        }
+        
+        #planet4 {
+            width: 20px;
+            height: 20px;
+            border-radius: 100px;
+            position: absolute;
+            background-image: radial-gradient(#E27B58, #C67B5C);
+        }
+        
+        #No5 {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            left: 50vw;
+            top: 50vh;
+        }
+        
+        #planet5 {
+            width: 50px;
+            height: 50px;
+            border-radius: 100px;
+            position: absolute;
+            background-image: radial-gradient(#90614D, #C88B3A);
+        }
+        
+        #No6 {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            left: 50vw;
+            top: 50vh;
+        }
+        
+        #planet6 {
+            width: 50px;
+            height: 50px;
+            border-radius: 100px;
+            position: absolute;
+            background-image: linear-gradient( #c3924f, #e2bf7d, #c3924f, #e2bf7d);
+        }
+        
+        #No7 {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            left: 50vw;
+            top: 50vh;
+        }
+        
+        #planet7 {
+            width: 50px;
+            height: 50px;
+            border-radius: 100px;
+            position: absolute;
+            background-image: radial-gradient( #D5FBFC, blue);
+        }
+        
+        #No8 {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            left: 50vw;
+            top: 50vh;
+        }
+        
+        #planet8 {
+            width: 40px;
+            height: 40px;
+            border-radius: 100px;
+            position: absolute;
+            background-image: radial-gradient(#3E66F9, #212354);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="Sun"></div>
+    <div id="No1">
+        <div id="planet1"></div>
+    </div>
+    <div id="No2">
+        <div id="planet2"></div>
+    </div>
+    <div id="No3">
+        <div id="planet3"></div>
+    </div>
+    <div id="No4">
+        <div id="planet4"></div>
+    </div>
+    <div id="No5">
+        <div id="planet5"></div>
+    </div>
+    <div id="No6">
+        <div id="planet6"></div>
+    </div>
+    <div id="No7">
+        <div id="planet7"></div>
+    </div>
+    <div id="No8">
+        <div id="planet8"></div>
+    </div>
+    <script>
+        function guiDao(R, name, V, D) {
+            var name = document.getElementById(name),
+                pos = 0,
+                id = setInterval(frame, 0.5)
+
+            function frame() {
+                pos = pos + (Math.PI * (V / 10000))
+                x = Math.cos(pos) * R - D / 2
+                y = Math.sin(pos) * R - D / 2
+                    //为行星
+                name.style.left = x + 'px'
+                name.style.top = y + 'px'
+            }
+            return null
+        }
+        document.getElementById("planet1").innerHTML = guiDao(100, "planet1", 47.87, 10)
+        document.getElementById("planet2").innerHTML = guiDao(125, "planet2", 35.02, 20)
+        document.getElementById("planet3").innerHTML = guiDao(150, "planet3", 29.78, 20)
+        document.getElementById("planet4").innerHTML = guiDao(175, "planet4", 24.08, 15)
+        document.getElementById("planet5").innerHTML = guiDao(250, "planet5", 13.07, 40)
+        document.getElementById("planet6").innerHTML = guiDao(300, "planet6", 9.69, 40)
+        document.getElementById("planet7").innerHTML = guiDao(350, "planet7", 6.81, 30)
+        document.getElementById("planet8").innerHTML = guiDao(360, "planet8", 5.43, 30)
+    </script>
+</body>
+
+</html>
