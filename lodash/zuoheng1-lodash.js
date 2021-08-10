@@ -129,13 +129,13 @@ var zuoheng1 = function() {
     }
 
     function getType1(obj) {
-        return obj.prototype.toString.call(obj)
+        return Object.prototype.toString.call(obj)
     }
-    //需完善
+
 
 
     function size(value) {
-        if (Object.prototype.toString.call(value) === '[object,Object]') {
+        if (getType1(value) === '[object,Object]') {
             let count = 0
             for (let item of value) {
                 count++
