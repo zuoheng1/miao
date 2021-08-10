@@ -114,9 +114,11 @@ var zuoheng1 = function() {
         }
     }
 
-    function matchesProperty(path, srcValue) {
+    function matchesProperty(collection) {
+        var key = collection[0],
+            val = collection[1]
         return function(obj) {
-            return get(obj, path) === srcValue;
+            return obj[key] == val
         }
     }
 
