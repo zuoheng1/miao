@@ -480,16 +480,11 @@ var zuoheng1 = function() {
     }
 
     function difference(array, ...value) {
-        var obj = {},
-            res = {}
-        for (var i = 0; i < value.length; i++) {
-            for (var j = 0; j < value[i].length; j++) {
-                obj[value[i][j]] = i
-            }
-        }
+        let obj = concat([], ...value),
+            res = []
         for (let i = 0; i < array.length; i++) {
-            if (obj[i][j] == undefined) {
-                res.push(array[i])
+            if (obj.indexOf(value[i]) == -1) {
+                res.push(value[i])
             }
         }
         return res
@@ -710,6 +705,7 @@ var zuoheng1 = function() {
         isSet: isSet,
         isString: isString,
         isSymbol: isSymbol,
+        isRegExp: isRegExp,
         isTypedArray: isTypedArray,
         isUndefined: isUndefined,
         isWeakMap: isWeakMap,
