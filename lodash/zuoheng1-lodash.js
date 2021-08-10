@@ -170,7 +170,7 @@ var zuoheng1 = function() {
 
 
     function size(value) {
-        if (getType1(value) === '[object,Object]') {
+        if (getType1(value) === '[object Object]') {
             let count = 0
             for (let item in value) {
                 count++
@@ -190,6 +190,20 @@ var zuoheng1 = function() {
             }
         }
         return arr
+    }
+
+    function reduce(collection, predicate, prime) {
+        predicate = iteratee(predicate)
+        let count = 0
+        for (let k of collection) {
+            if (count == 0 && prime == undefined) {
+                prime = collection[k]
+            } else {
+                prime = predicate(prime, collection[k], k, collection)
+                count++
+            }
+        }
+        return prime
     }
 
     function map(collection, f) {
@@ -758,6 +772,8 @@ var zuoheng1 = function() {
         isPath: isPath,
         map: map,
         filter: filter,
+        reduce: reduce,
+        includes: includes,
         parseJson: parseJson,
         stringifyJson: stringifyJson,
     }
