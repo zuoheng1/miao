@@ -43,8 +43,43 @@ var zuoheng1 = function() {
             }
             return object
         } else {
-            return object[path]
+            return object
         }
+    }
+
+    function includes(collection, value, fromIndex = 0) {
+        let start = fromIndex >= 0 ? fromIndex : collection.length + fromIndex
+        if (Array.isArray(collection)) {
+            if (fromIndex >= 0) {
+                for (let i = start; i < collection.length; i++) {
+                    if (someValueZero(collection[i], value)) {
+                        return true
+                    }
+                }
+            } else {
+                for (let i = start; i >= 0; i--) {
+                    if (someValueZero(collection[i], value)) {
+                        return true
+                    }
+                }
+            }
+        } else if (typeof collection == 'object') {
+            for (let k in collection) {
+                if (someValueZero(collection[i], value)) {
+                    return true
+                }
+            }
+        } else if (typeof collection == 'string') {
+            return collection.includes(value, start)
+        }
+        return false
+    }
+
+    function someValueZero(a, b) {
+        if (a === b) {
+            return true
+        }
+        return ((Number.isNaN(a) && Number.isNaN(b)) || (a === undefined ? a == b : false) || (a == null ? a == b : false))
     }
 
     function isPath(value) {
@@ -137,7 +172,7 @@ var zuoheng1 = function() {
     function size(value) {
         if (getType1(value) === '[object,Object]') {
             let count = 0
-            for (let item of value) {
+            for (let item in value) {
                 count++
             }
             return count
