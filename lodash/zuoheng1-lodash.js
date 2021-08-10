@@ -35,11 +35,11 @@ var zuoheng1 = function() {
             if (isString(path)) {
                 path = toPath(path)
             }
-            for (let i = path[0]; i < path.length; i++) {
-                if (object[i] == undefined) {
+            for (let i = 0; i < path.length; i++) {
+                if (object[path[i]] == undefined) {
                     return defaultValue
                 }
-                object = object[i]
+                object = object[path[i]]
             }
             return object
         } else {
@@ -336,14 +336,14 @@ var zuoheng1 = function() {
     }
 
     function isFinite(value) {
-        return typeof value === 'object' && value != Infinity && value != -Infinity
+        return isNumber(value) && value != Infinity && value != -Infinity
     }
 
     function isFunction(value) {
         return typeof value === 'function'
     }
 
-    function isInteger() {
+    function isInteger(value) {
         return isFinite(value) && Math.floor(value) === value
     }
 
