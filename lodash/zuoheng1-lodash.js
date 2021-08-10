@@ -65,7 +65,7 @@ var zuoheng1 = function() {
             }
         } else if (typeof collection == 'object') {
             for (let k in collection) {
-                if (someValueZero(collection[i], value)) {
+                if (someValueZero(collection[k], value)) {
                     return true
                 }
             }
