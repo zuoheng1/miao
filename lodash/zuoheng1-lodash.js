@@ -151,10 +151,14 @@ var zuoheng1 = function() {
     function filter(collection, callback) {
         callback = iteratee(callback)
         let res = []
-        for (let item of collection) {
-            res.push(callback(collection[item], item, collection))
+        for (var key of collection) {
+            if (callback(collection[key], key, collection)) {
+                res.push(collection[key])
+            }
         }
-        return res
+
+
+
     }
 
 
