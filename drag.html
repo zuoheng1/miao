@@ -91,15 +91,15 @@
                 tip.style.zIndex = 99999
 
 
-                addEventListener('mousemove', move)
-                addEventListener('mouseup', removeBind)
-                addEventListener('blur', removeBind)
+                window.addEventListener('mousemove', move)
+                window.addEventListener('mouseup', removeBind)
+                window.addEventListener('blur', removeBind)
             }
 
             function removeBind() {
-                removeEventListener('mousemove', move)
-                removeEventListener('mouseup', removeBind)
-                removeEventListener('blur', removeBind)
+                window.removeEventListener('mousemove', move)
+                window.removeEventListener('mouseup', removeBind)
+                window.removeEventListener('blur', removeBind)
             }
 
             function move(e) {
@@ -115,17 +115,17 @@
                 pageWidth = container.clientWidth
                 pageHeight = container.clientHeight
 
-                if (resX <= 320) {
+                if (resX <= 360) {
                     resX = 320
 
                 }
-                if (resX >= pageWidth - tip.offsetWidth + 320) {
+                if (resX >= pageWidth - tip.offsetWidth + 280) {
                     resX = pageWidth - tip.offsetWidth + 320
                 }
-                if (resY <= 10) {
+                if (resY <= 40) {
                     resY = 10
                 }
-                if (resY >= pageHeight - tip.offsetHeight + 10) {
+                if (resY >= pageHeight - tip.offsetHeight - 30) {
                     resY = pageHeight - tip.offsetHeight + 10
                 }
 
