@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .contain {
+            width: 800px;
+            height: 800px;
+            margin: auto;
+            border: 2px red solid;
+        }
+        
+        .dragTip {
+            box-sizing: border-box;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            border: 2px solid #333;
+            box-shadow: inset 0px 0px 5px 2px #6663;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        let resX = 10,
+            resY = 320,
+            count = 0,
+            index = 0,
+            Color = 0
+
+        let container = document.createElement('div')
+        container.classList.add('contain')
+        document.body.append(container)
+        createTips()
+        createTips()
+
+        function createTips() {
+            if (count > 8) {
+                return
+            }
+            let tip = document.createElement('div')
+            tip.classList.add('dragTip')
+            tip.style.top = resX + 'px'
+            tip.style.left = resY + 'px'
+            tip.style.backgroundColor = `hsl(${Color},70%,70%)`
+            tip.style.zIndex = index + 1
+            container.append(tip)
+            resX += 10
+            resY += 10
+            Color += 30
+            count++
+        }
+
+        function removeTip() {
+            if (count < 0) {
+                return
+            }
+            container.removeChild(container.lastElementChild)
+            resX -= 10
+            resY -= 10
+            Color -= Color > 0 ? 30 : 255
+            count--
+        }
+        //新建磁吸
+        window.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key == 'a') {
+                    e.preventDefault()
+                    createTips()
+                }
+            })
+            //移除
+        window.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key == 'z') {
+                e.preventDefault()
+                removeTip()
+            }
+        })
+        window.addEventListener('mousedown', function(e) {
+            let tip = e.target
+            if (!tip.classList.contains('dragTip')) {
+                return
+            }
+            if (e.which == 1) {
+                e.preventDefault()
+                tip.style.zIndex = 99999
+
+
+                addEventListener('mousemove', move)
+                addEventListener('mouseup', removeBind)
+                addEventListener('blur', removeBind)
+            }
+
+            function removeBind() {
+                removeEventListener('mousemove', move)
+                removeEventListener('mouseup', removeBind)
+                removeEventListener('blur', removeBind)
+            }
+
+            function move(e) {
+                if (e.which !== 1) {
+                    return
+                }
+
+                // 用鼠标实时位置更新元素位置
+                var resX = e.clientX - 50
+                var resY = e.clientY - 50
+
+                // 不允许元素移出视口边界，并实现磁吸效果
+                pageWidth = container.clientWidth
+                pageHeight = container.clientHeight
+
+                if (resX <= 320) {
+                    resX = 320
+
+                }
+                if (resX >= pageWidth - tip.offsetWidth + 320) {
+                    resX = pageWidth - tip.offsetWidth + 320
+                }
+                if (resY <= 10) {
+                    resY = 10
+                }
+                if (resY >= pageHeight - tip.offsetHeight + 10) {
+                    resY = pageHeight - tip.offsetHeight + 10
+                }
+
+                // 更新元素的位置
+                tip.style.left = resX + 'px'
+                tip.style.top = resY + 'px'
+            }
+        })
+        addEventListener('resize', function(e) {
+            var boxs = Array.from(document.querySelectorAll('.dragTip'))
+            pageWidth = container.clientWidth
+            pageHeight = container.clientHeight
+            for (let box of boxs) {
+                let left = parseFloat(box.style.left)
+                let top = parseFloat(box.style.top)
+                if (left <= 10) {
+                    left = 10
+                }
+                if (left >= pageWidth - box.offsetWidth - 10) {
+                    left = pageWidth - box.offsetWidth
+                }
+                if (top <= 350) {
+                    top = 350
+                }
+                if (top > pageHeight - box.offsetHeight - 350) {
+                    top = pageHeight - box.offsetHeight
+                }
+                box.style.left = left + 'px'
+                box.style.top = top + 'px'
+            }
+        })
+    </script>
+</body>
+
+</html>

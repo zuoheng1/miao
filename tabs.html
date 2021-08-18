@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper {
+            width: 600px;
+            margin: auto;
+        }
+        
+        .tabs {
+            display: inline-block;
+            width: 90px;
+            margin: 10px;
+            padding: 0;
+            background-color: moccasin;
+            text-align: center;
+        }
+        
+        #one p,
+        #two p,
+        #three p {
+            display: none;
+            color: rgb(240, 41, 247);
+        }
+        
+        #content {
+            background-color: grey;
+            width: 350px;
+            height: 250px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="tabs" id="one">Tab one
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. In reprehenderit commodi, asperiores explicabo ipsa quia voluptatibus non at fugiat iure quae, a culpa doloremque. Magni excepturi eligendi reprehenderit est ex.</p>
+        </div>
+        <div class="tabs" id="two">Tab two
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium id blanditiis iure magni atque quis adipisci excepturi, error vero maiores, veritatis natus, modi repellat aspernatur. Voluptatibus sit quibusdam ratione odio.</p>
+        </div>
+        <div class="tabs" id="three">Tab three
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident obcaecati ex, incidunt, aperiam doloremque recusandae cupiditate maxime, consequuntur corrupti pariatur enim eius rem nemo maiores possimus ut facere atque nulla?</p>
+        </div>
+        <p id="content">点击上面的选项卡!!!!</p>
+    </div>
+    <script>
+        let p = document.querySelector('#content')
+        let tabs = ['#one', '#two', '#three']
+        tabs.forEach(n => {
+            let m = document.querySelector(n)
+            m.addEventListener('click', function() {
+                p.innerHTML = m.childNodes[1].innerHTML
+            })
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 6px;
+            background-color: red;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let draw = false
+        document.addEventListener('mousedown', function(e) {
+            draw = true
+
+        })
+        document.addEventListener('mouseup', function(e) {
+            draw = false
+        })
+        document.addEventListener('mousemove', function(e) {
+            if (draw) {
+                let dot = document.createElement('span')
+                dot.classList.add('dot')
+                    // dot.style.left = e.pageX + 'px'
+                    // dot.style.top = e.pageY + 'px'
+                dot.style.transform = `translate(${e.pageX - 3}px,${e.pageY - 3}px)`
+                dot.style.cursor = `pointer`
+                document.body.append(dot)
+            }
+
+        })
+    </script>
+</body>
+
+</html>

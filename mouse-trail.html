@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 30px;
+            height: 30px;
+            border-radius: 30px;
+            position: fixed;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        let boxes = document.querySelectorAll('div'),
+            cenX = 0,
+            cenY = 0,
+            R = 46,
+            G = 78,
+            B = 90
+        window.addEventListener('mousemove', e => {
+            cenX = e.clientX
+            cenY = e.clientY
+            R = R < 0 ? 255 : R - 10
+            G = G < 0 ? 255 : G - 11
+            B = B < 0 ? 255 : B - 12
+        })
+        requestAnimationFrame(function motion(time) {
+            let angle = time * 0.001
+            for (let box of boxes) {
+                box.style.left = Math.cos(angle) * 100 + cenX + 'px'
+                box.style.top = Math.sin(angle) * 100 + cenY + 'px'
+                box.style.backgroundColor = 'rgb(' + R + ',' + B + ',' + G + ')'
+                angle += Math.PI * 2 / boxes.length
+            }
+            requestAnimationFrame(motion)
+        })
+    </script>
+</body>
+
+</html>

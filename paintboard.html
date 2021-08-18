@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>No Paint No Giant</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        
+        .main-container {
+            background-color: lightgrey;
+            height: 100%;
+            min-width: 420px;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+        }
+        
+        header {
+            display: flex;
+            align-items: center;
+            height: 30px;
+            padding: 5px;
+        }
+        
+        header>* {
+            margin-right: 10px;
+        }
+        
+        header button {
+            box-sizing: border-box;
+            padding: 0 5px;
+            border: 1px solid;
+            border-radius: 5px;
+            height: 30px;
+            line-height: 28px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        header button:hover {
+            background-color: #005cc8;
+            color: white;
+            border-color: black;
+        }
+        
+        div.board {
+            flex: 1;
+            display: flex;
+            max-width: 100%;
+            position: relative;
+            cursor: crosshair;
+        }
+        
+        aside {
+            flex-shrink: 0;
+            width: 40px;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            user-select: none;
+        }
+        
+        aside input[type="radio"] {
+            display: none;
+        }
+        
+        aside label {
+            box-sizing: border-box;
+            height: 30px;
+            width: 30px;
+            border: 1px solid;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 20px;
+            line-height: 28px;
+            position: relative;
+        }
+        
+        aside input[type="radio"]:checked+label {
+            background-color: #0075ff;
+            font-weight: bolder;
+            color: white;
+            border-color: black;
+        }
+        
+        aside input[type="radio"]+label:hover {
+            background-color: #005cc8;
+            border-color: black;
+            color: white;
+            cursor: pointer;
+        }
+        
+        aside input[type="color"] {
+            background-color: inherit;
+            box-sizing: border-box;
+            height: 30px;
+            width: 30px;
+            border: 1px solid;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        
+        svg {
+            background-color: white;
+            flex-grow: 1;
+            box-sizing: border-box;
+            border: 1px solid;
+            border-radius: 5px;
+        }
+        
+        div.message {
+            padding-left: 40px;
+        }
+        
+        div.message p {
+            font-size: 0.8em;
+            margin: 2px 0;
+        }
+        /* #tool-curve + label::after {
+        content: "1";
+        color: white;
+        position: absolute;
+        top: -5px;
+        right: -10px;
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
+        line-height: 16px;
+        border-radius: 999px;
+        background-color: red;
+      } */
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <header>
+            <button id="save">Save File</button>
+            <span>粗细</span>
+            <input type="range" name="stroke-width" id="stroke-width" min="1" max="20" value="1" />
+            <span id="label-width"></span>
+            <label for="fill"><input type="checkbox" name="fill" id="fill" />Fill</label>
+            <button id="clear">Clear All</button>
+        </header>
+
+        <div class="board">
+            <aside class="tools">
+                <input type="radio" name="tool" id="tool-brush" checked />
+                <label for="tool-brush">&#9998;</label>
+                <input type="radio" name="tool" id="tool-line" />
+                <label for="tool-line">&#8212;</label>
+                <input type="radio" name="tool" id="tool-curve" />
+                <label for="tool-curve">&#12316;</label>
+                <input type="radio" name="tool" id="tool-ellipse" />
+                <label for="tool-ellipse">&#9675;</label>
+                <input type="radio" name="tool" id="tool-rect" />
+                <label for="tool-rect">&#9645;</label>
+                <input type="radio" name="tool" id="tool-polygon" />
+                <label for="tool-polygon">&#11040;</label>
+                <hr />
+                <input type="color" name="color" id="pen-color" />
+                <input type="color" name="fillColor" id="fill-color" value="#ffffff" />
+            </aside>
+            <svg version="1.1" baseProfile="full" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        <div class="message">
+            <p>按住 <kbd>Shift</kbd> 启用正交模式： 画正圆/正方形/水平和垂直线</p>
+            <p>鼠标左键使用前景色绘制，鼠标右键使用背景色绘制</p>
+            <p>点击 Fill 按钮使用 填充模式</p>
+        </div>
+    </div>
+
+    <script>
+        let toolBrush = document.querySelector("#tool-brush");
+        let toolLine = document.querySelector("#tool-line");
+        let toolCurve = document.querySelector("#tool-curve");
+        let toolEllipse = document.querySelector("#tool-ellipse");
+        let toolRect = document.querySelector("#tool-rect");
+        let toolPolygon = document.querySelector("#tool-polygon");
+        let fillButton = document.querySelector("#fill");
+        let clearButton = document.querySelector("#clear");
+        let saveButton = document.querySelector("#save");
+
+        let toolBar = document.querySelector(".tools");
+
+        toolBar.addEventListener("click", function(e) {
+            lastTool = tool;
+            if (e.target == toolBrush) {
+                tool = "brush";
+            }
+            if (e.target == toolLine) {
+                tool = "line";
+            }
+            if (e.target == toolCurve) {
+                tool = "curve";
+            }
+            if (e.target == toolEllipse) {
+                tool = "ellipse";
+            }
+            if (e.target == toolRect) {
+                tool = "rect";
+            }
+            if (e.target == toolPolygon) {
+                tool = "polygon";
+            }
+            if (lastTool == "polygon" && progress != 1) {
+                let polyline = svg.lastChild;
+                let polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+
+                polygon.setAttribute("stroke", polyline.getAttribute("stroke"));
+                polygon.setAttribute("stroke-width", polyline.getAttribute("stroke-width"));
+                polygon.setAttribute("stroke-linecap", polyline.getAttribute("stroke-linecap"));
+                polygon.setAttribute("stroke-linejoin", polyline.getAttribute("stroke-linejoin"));
+                polygon.setAttribute("fill", polyline.getAttribute("fill"));
+
+                let points = polyline.getAttribute("points");
+
+                polygon.setAttribute("points", points);
+
+                svg.replaceChild(polygon, polyline);
+            }
+            progress = 1;
+        });
+
+        let svg = document.querySelector("svg");
+        let penColor = document.querySelector("#pen-color");
+        let fillColor = document.querySelector("#fill-color");
+        let strokeWidth = document.querySelector("#stroke-width");
+        let strokeWidthLable = document.querySelector("#label-width");
+
+        let tool = "brush";
+        let lastTool;
+        let isFilled = false;
+        let startPos;
+        let polygonStartPos;
+        let saved = true;
+        let progress = 1; // 画曲线 和 多边形 的阶段
+        let orthomode = false; // 正交模式
+
+        // let reduStack = [];
+
+        strokeWidthLable.textContent = strokeWidth.value;
+        strokeWidth.addEventListener('input', function(e) {
+            strokeWidthLable.textContent = strokeWidth.value
+        })
+
+        fillButton.addEventListener('click', function(e) {
+            if (this.checked) {
+                isFilled = true
+            }
+        })
+
+        function drawLine(e) {
+            if (e.buttons == 0) {
+                document.removeEventListener("mousemove", drawLine);
+            } else {
+                let pos = getReletivePos(svg);
+                let polyline = svg.lastChild;
+
+                let points = polyline.getAttribute("points");
+                points += ` ${pos.x} ${pos.y}`;
+                polyline.setAttribute("points", points);
+            }
+        }
+
+        function reset() {
+            document.removeEventListener('mouseup', reset)
+            document.removeEventListener('mousemove', drawLine)
+        }
+        svg.addEventListener('mousedown', function(e) {
+            saved = false
+            let pos = getReletivePos(svg),
+                paintColor,
+                secondColor
+            startPos = pos
+            if (e.button == 0) {
+                paintColor = penColor.value
+                secondColor = fillColor.value
+            }
+            if (e.button == 2) {
+                paintColor = fillColor.value
+                secondColor = penColor.value
+            }
+            if (e.button == 0 || e.button == 2) {
+                if (tool == 'brush') {
+                    let polyline = document.createElementNS("http://www.w3.org/2000/svg", 'polyline')
+                    polyline.setAttribute('stroke', paintColor)
+                    polyline.setAttribute('stroke-width', strokeWidth.value)
+                    polyline.setAttribute('stroke-linecap', 'round')
+                    polyline.setAttribute('stroke-linejoin', 'round')
+                    polyline.setAttribute('fill', 'none')
+                    let points = `${pos.x} ${pos.y}`
+                    polyline.setAttribute('points', points)
+                    svg.append(polyline)
+                    drawLine(e)
+
+                    document.addEventListener('mousemove', drawLine)
+                    document.addEventListener('mouseup', reset)
+                    window.addEventListener('blur', reset)
+                }
+            }
+        })
+        svg.addEventListener('contextmenu', (e) => {
+                e.preventDefault()
+            })
+            //获取鼠标事件发生时的相对位置
+        function getReletivePos(node) {
+            let rect = node.getBoundingClientRect()
+            return {
+                x: window.event.clientX - rect.x,
+                y: window.event.clienty - rect.y,
+            }
+        }
+    </script>
+</body>
+
+</html>
