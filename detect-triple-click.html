@@ -1,0 +1,18 @@
+<script>
+    let last1 = 0,
+        last2 = 0,
+        last3 = 0
+
+    window.addEventListener('click', e => {
+        let timer = Date.now(),
+            triple
+        if (timer - last2 < 400 && last2 - last1 > 400) {
+            triple = document.createElement('p')
+            triple.textContent = 'triple'
+            document.body.append(triple)
+        }
+        last1 = last2
+        last2 = last3
+        last3 = timer
+    })
+</script>
