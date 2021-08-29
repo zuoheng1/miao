@@ -9,8 +9,10 @@
 </head>
 
 <body>
-    <div class="worrld"></div>
-    <button onclick="next()">next</button><button></button><button></button>
+    <div id="world"></div>
+    <button onclick="next()">next</button>
+    <button onclick="autorun()">Autorun</button>
+    <button onclick="toggleCircular()">切换边界</button>
     <script>
         class Conway {
             constructor(width, height) {
@@ -49,18 +51,22 @@
                 return this.world[row * this.width + col]
             }
             set(row, col, val) {
-                if (row > this.height || col > this.width || row < 0 || cow < 0) {
+                if (row > this.height || col > this.width) {
+                    return
+                }
+                if (row < 0 || col < 0) {
                     return
                 }
                 this.world[row * this.width + col] = val
             }
             getNeighbors(row, col) {
                 var count = 0
-                for (var r = row - 1; r < row + 1; r++) {
-                    for (var c = col - 1; c < col + 1; c++) {
-                        coynt += this.get(r, c)
+                for (var r = row - 1; r <= row + 1; r++) {
+                    for (var c = col - 1; c <= col + 1; c++) {
+                        count += this.get(r, c)
                     }
                 }
+                return count - this.get(row, col)
             }
             next() {
                 var newWorld = new Array(this.width * this.height).fill(0)
@@ -68,7 +74,7 @@
                     for (var r = 0; r < this.height; r++) {
                         var thisStatus = this.get(r, c),
                             liveNeighbors = this.getNeighbors(r, c)
-                        if (thisStatus === 1) {
+                        if (thisStatus == 1) {
                             if (liveNeighbors < 2 || liveNeighbors > 3) {
                                 newWorld[r * this.width + c] = 0
                             } else {
@@ -83,19 +89,57 @@
                 }
                 this.world = newWorld
             }
-        }
-        printWorld() {
-            var str = ''
-            for (var r = 0; r < this.height; r++) {
-                for (var c = 0; c < this.width; c++) {
-                    str += this.get(r, c) ? '0' : '.'
+            printWorld() {
+                var str = ''
+                for (var r = 0; r < this.height; r++) {
+                    for (var c = 0; c < this.width; c++) {
+                        str += this.get(r, c) ? '0' : '.'
+                    }
+                    str += '\n'
                 }
-                str += '/n'
+            }
+            printWorldToHTML() {
+                var html = ''
+                for (var r = 0; r < this.height; r++) {
+                    for (var c = 0; c < this.width; c++) {
+                        html += this.get(r, c) ? `<input type = 'checkbox' data-row='${r}' data-col='${c}' checked>` : `<input type="checkbox" data-row="${r}" data-col="${c}">`
+                    }
+                    html += '<br>'
+                }
+                return html
             }
         }
-        printWorldToHTML() {
-            var html = ''
+        var div = document.querySelector('#world'),
+            c = new Conway(10, 10)
+        div.innerHTML = c.printWorldToHTML()
+        div.addEventListener('click', function(e) {
+            var target = e.target,
+                row = Number(target.dataset.row),
+                col = Number(target.dataset.col)
+            c.set(row, col, target.checked ? 1 : 0)
+        })
 
+        function next() {
+            c.next()
+            div.innerHTML = c.printWorldToHTML()
+        }
+
+        function toggleCircular() {
+            c.setCircular(!c.circular)
+        }
+        var running = false,
+            intervalId
+
+        function autorun() {
+            if (running) {
+                running = false
+                event.target.textContent = 'Auto'
+                clearInterval(intervalId)
+            } else {
+                running = true
+                event.target.textContent = 'Stop'
+                intervalId = setInterval(next, 500)
+            }
         }
     </script>
 </body>
