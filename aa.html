@@ -40,6 +40,35 @@
     <div id="map" class="map"></div>
 
     <script>
+        class Food {
+            constructor() {
+
+            }
+            init() {
+                this.remove()
+                this.style.width = this.width + "px";
+                this.style.height = this.height + "px";
+                this.style.backgroundColor = this.color;
+                // 设置为相对定位
+                this.style.position = "absolute";
+                this.x = parseInt(Math.random() * (map.offsetWidth / this.width));
+                this.y = parseInt(Math.random() * (map.offsetHeight / this.height));
+                // 设置食物出现的位置不是当前小蛇身体所在位置
+                for (var i = 0; i < snake.body.length; i++) {
+                    while (this.x == snake.body[i].x && this.y == snake.body[i].y) {
+                        this.x = parseInt(Math.random() * (map.offsetWidth / this.width));
+                        this.y = parseInt(Math.random() * (map.offsetHeight / this.height));
+                        continue;
+                    }
+                }
+                this.style.left = this.x * this.width + "px";
+                this.style.top = this.y * this.height + "px";
+
+                // 将食物添加到map和foodElements数组中
+                map.appendChild(div);
+                foodElements.push(div);
+            };
+        }
         var map = document.getElementById("map");
 
         // 存放food的数组，用来删除food
@@ -142,7 +171,6 @@
                         div.style.backgroundColor = obj.color;
                         div.style.left = obj.x * this.width + "px";
                         div.style.top = obj.y * this.height + "px";
-
                         // 将snake的每个节点添加到数组中，以便后期删除使用
                         snakeElements.push(div);
                     }
